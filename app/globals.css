@@ -1,0 +1,121 @@
+/* Design tokens: copied from tina-mahlon-portfolio-handoff/handoff/tokens.css.
+   Do not introduce colours, fonts or radii that are not listed here. */
+
+:root {
+  /* Surfaces */
+  --ink: #15231f;
+  --ink-panel: #1e2e29;
+  --cream: #f8f7f1;
+  --sand: #f2eae1;
+
+  /* Text on light */
+  --text: #15231f;
+  --text-body: #2e3b36;
+  --text-muted: #5c6660;
+
+  /* Text on dark */
+  --on-dark-strong: #fffefa;
+  --on-dark: #f6f4ee;
+  --on-dark-nav: #dedcd3;
+  --on-dark-body: #c2cac4;
+  --on-dark-muted: #a9b5ae;
+
+  /* Lines */
+  --line: #d8d2c7;
+  --line-strong: #15231f;
+  --pill-border: #c9bfb2;
+  --dash: #8a9a8d;
+  --card-border: rgba(246, 244, 238, 0.14);
+
+  /* Accent: blood red. Only on things that pulse or flow, and on the call to action. */
+  --accent: #b3202e;
+  --accent-bright: #e5484d;
+  --on-accent: #ffffff;
+
+  /* Map */
+  --map-land: #e8dfd3;
+  --map-stroke: #cdbfaf;
+
+  /* Type families, wired to next/font variables set on <html> */
+  --font-display: var(--font-bricolage), "Arial Narrow", sans-serif;
+  --font-body: var(--font-instrument), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, Menlo, monospace;
+
+  /* Layout */
+  --page-max: 1264px;
+  --page-pad: 32px;
+  --split-gap: 64px;
+  --section-pad: clamp(64px, 8vw, 104px);
+  --section-pad-contact: clamp(72px, 9vw, 120px);
+
+  /* Radii */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-pill: 999px;
+}
+
+@media (max-width: 560px) {
+  :root {
+    --page-pad: 20px;
+  }
+}
+
+/* Breakpoints: 920px (sections stack, vein becomes a left-edge spine)
+   and 560px (page padding 20px, facts strip two columns). */
+
+/* Base */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+a {
+  color: inherit;
+}
+
+a:hover {
+  opacity: 0.78;
+}
+
+/* Focus: accent on light surfaces, white on dark surfaces and the contact band. */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.surface-dark :focus-visible {
+  outline-color: var(--on-accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

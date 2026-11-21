@@ -1,0 +1,106 @@
+.section {
+  background: var(--ink);
+  color: var(--on-dark);
+}
+
+.headerRow {
+  margin-bottom: 56px;
+}
+
+.heading {
+  margin-bottom: 16px;
+  color: var(--on-dark-strong);
+}
+
+.intro {
+  margin: 0;
+  max-width: 640px;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--on-dark-body);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+  gap: 24px;
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 28px;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  background: var(--ink-panel);
+  transition:
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.pulse {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--accent-bright);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s ease;
+}
+
+.index {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: var(--on-dark-muted);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 23px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--on-dark-strong);
+}
+
+.text {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--on-dark-body);
+}
+
+/* Lit state: hover on desktop */
+.card:hover {
+  border-color: var(--accent-bright);
+  transform: translateY(-3px);
+}
+
+.card:hover .pulse {
+  transform: scaleX(1);
+}
+
+/* Lit state on touch and narrow screens: the card nearest the middle of the screen (no lift). */
+@media (hover: none), (max-width: 920px) {
+  .card:global(.is-active) {
+    border-color: var(--accent-bright);
+  }
+
+  .card:global(.is-active) .pulse {
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .pulse {
+    transition: none;
+  }
+}

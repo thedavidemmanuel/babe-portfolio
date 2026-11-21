@@ -1,0 +1,60 @@
+.ecg {
+  height: 48px;
+  overflow: hidden;
+  color: var(--accent-bright);
+}
+
+.svg {
+  display: block;
+  max-width: none;
+}
+
+.line,
+.sweep {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.line {
+  stroke: var(--on-dark);
+  stroke-width: 1.5;
+  opacity: 0.4;
+  stroke-dasharray: 2700;
+  stroke-dashoffset: 2700;
+  animation: draw 3.6s linear 0.3s forwards;
+}
+
+.sweep {
+  stroke: currentColor;
+  stroke-width: 2.5;
+  stroke-dasharray: 80 2700;
+  stroke-dashoffset: 80;
+  animation: sweep 6s linear 3.9s infinite;
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes sweep {
+  from {
+    stroke-dashoffset: 80;
+  }
+  to {
+    stroke-dashoffset: -1400;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .line {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+
+  .sweep {
+    display: none;
+  }
+}

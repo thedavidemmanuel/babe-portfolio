@@ -1,0 +1,74 @@
+/* Shared layout recipes. The split recipe is load-bearing: the vein position is derived from it. */
+
+.wrap {
+  width: 100%;
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding-inline: var(--page-pad);
+}
+
+.section {
+  padding-block: var(--section-pad);
+}
+
+.split {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px var(--split-gap);
+}
+
+/* Section header row: label column + heading column. */
+.headerRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px var(--split-gap);
+  margin-bottom: 48px;
+}
+
+.labelCol {
+  flex: 1 1 220px;
+  min-width: 0;
+}
+
+.contentCol {
+  flex: 3 1 560px;
+  min-width: 0;
+}
+
+.h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(32px, 4vw, 52px);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+/* Lead paragraph / research title */
+.lead {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(24px, 2.5vw, 34px);
+  line-height: 1.24;
+  letter-spacing: -0.02em;
+}
+
+.sectionLabel {
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.numberAccent {
+  color: var(--accent);
+}
+
+.numberMuted {
+  color: var(--on-dark-muted);
+}

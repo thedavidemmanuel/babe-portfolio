@@ -1,0 +1,47 @@
+.section {
+  background: var(--sand);
+  color: var(--text);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+  gap: 40px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line-strong);
+}
+
+.colTitle {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.name {
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--text);
+}
+
+.detail {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}

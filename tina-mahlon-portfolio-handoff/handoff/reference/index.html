@@ -1,0 +1,573 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dr. Tina Nimrod Mahlon — Portfolio (design reference)</title>
+<!-- DESIGN REFERENCE ONLY. Exported from the design canvas: it shows exactly how the page should look, move and respond.
+     Do not copy its structure (inline styles, !important overrides). Rebuild it as components from handoff/SPEC.md. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&amp;family=Instrument+Sans:wght@400..700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+<style>
+html{scroll-behavior:smooth}
+body{margin:0;background:#15231F}
+a{color:inherit}a:hover{color:inherit;opacity:.78}
+.vein path{fill:none;stroke:currentColor;stroke-linecap:round}
+.vein-vessel{stroke-width:2.5;opacity:.3}
+.vein-branch{stroke-width:1.4;opacity:.4;animation:vein-breathe 4s ease-in-out infinite alternate}
+.vein-flow{stroke-width:3;stroke-dasharray:70 330;animation:vein-flow 3.6s linear infinite}
+.vein-cells{stroke-width:2;opacity:.7;stroke-dasharray:6 194;animation:vein-cells 1.8s linear infinite}
+.vein-ring{position:absolute;inset:0;border-radius:50%;border:2px solid currentColor;animation:vein-ping 2.4s ease-out infinite}
+@keyframes vein-flow{to{stroke-dashoffset:-400}}
+@keyframes vein-cells{to{stroke-dashoffset:-200}}
+@keyframes vein-breathe{from{opacity:.2}to{opacity:.55}}
+@keyframes vein-ping{0%{transform:scale(1);opacity:.7}70%,100%{transform:scale(2.8);opacity:0}}
+.ecg path{fill:none;stroke-linecap:round;stroke-linejoin:round}
+.ecg-line{stroke:#F6F4EE;stroke-width:1.5;opacity:.4;stroke-dasharray:2700;stroke-dashoffset:2700;animation:ecg-draw 3.6s linear .3s forwards}
+.ecg-sweep{stroke:currentColor;stroke-width:2.5;stroke-dasharray:80 2700;stroke-dashoffset:80;animation:ecg-sweep 6s linear 3.9s infinite}
+@keyframes ecg-draw{to{stroke-dashoffset:0}}
+@keyframes ecg-sweep{from{stroke-dashoffset:80}to{stroke-dashoffset:-1400}}
+.map-land{fill:#E8DFD3;stroke:#CDBFAF;stroke-width:1;stroke-linejoin:round}
+.map-route{fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-dasharray:3 5;animation:map-march 1.4s linear infinite}
+.map-dot{fill:currentColor}
+.map-ping{fill:none;stroke:currentColor;stroke-width:1.5;transform-box:fill-box;transform-origin:center;animation:vein-ping 2.4s ease-out infinite}
+.map-label{font-family:'IBM Plex Mono',ui-monospace,Menlo,monospace;font-size:12px;fill:#15231F}
+.map-mid{text-anchor:middle}
+.map-end{text-anchor:end}
+@keyframes map-march{to{stroke-dashoffset:-8}}
+.pcard{transition:border-color .25s ease,transform .25s ease}
+.pcard:hover{border-color:currentColor!important;transform:translateY(-3px)}
+.pcard-pulse{position:absolute;top:0;left:0;width:100%;height:2px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .5s ease}
+.pcard:hover .pcard-pulse{transform:scaleX(1)}
+.vein-branch-m{display:none;stroke-width:1.4;opacity:.45}
+@media (max-width:920px){
+.nav-links{flex-wrap:nowrap!important;overflow-x:auto;width:100%;gap:4px 24px!important;scrollbar-width:none}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{flex:none}
+#profile .profile-aside{display:contents}
+#profile-h{order:1;width:100%}
+#profile .wrap>div:nth-child(2){order:2}
+#profile .profile-map{order:3;margin:8px auto 0!important;width:100%;max-width:340px!important}
+.stat{flex-direction:row!important;align-items:center;gap:18px!important}
+.stat>span:first-child{flex:none;min-width:104px;font-size:48px!important}
+.exp-item{padding-left:44px!important;gap:12px 0!important}
+.exp-item>div:first-child{flex-direction:row!important;flex-wrap:wrap;align-items:center!important;gap:4px 14px!important}
+.exp-item>div:first-child>span{margin-top:0!important}
+.vein{left:0!important;width:44px!important}
+.vein svg{margin-left:-74px}
+.vein-branch{display:none}
+.vein-branch-m{display:block}
+.vein-twig{left:8px!important;top:46px!important;width:28px!important}
+.js-motion .vein{clip-path:inset(0 0 calc((1 - var(--vein-p,1))*100%) 0)}
+.js-motion .vein-twig{opacity:.25;transition:opacity .4s ease}
+.js-motion .exp-item:not(.is-reached) .vein-ring{animation:none;opacity:0}
+.js-motion .exp-item.is-reached .vein-twig{opacity:1}
+}
+@media (max-width:560px){.wrap{padding-inline:20px!important}.facts{grid-template-columns:1fr 1fr!important;gap:20px 24px!important}}
+@media (hover:none),(max-width:920px){.pcard.is-active{border-color:currentColor!important}.pcard.is-active .pcard-pulse{transform:scaleX(1)}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.vein path,.vein-ring,.map-route,.map-ping{animation:none}.ecg-line{animation:none;stroke-dashoffset:0}.ecg-sweep{display:none}.pcard,.pcard-pulse{transition:none}}
+</style>
+<style>:root{--accent:#B3202E}</style>
+</head>
+<body>
+<div id="top" data-root style="font-family: 'Instrument Sans', system-ui, -apple-system, 'Segoe UI', sans-serif; color: #15231F; background: #F8F7F1; font-size: 17px; line-height: 1.6">
+
+<header style="background: #15231F; color: #F6F4EE">
+<div class="wrap" style="width: 100%; max-width: 1264px; margin: 0 auto; padding-inline: 32px; box-sizing: border-box">
+
+<nav aria-label="Primary" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 32px; padding-block: 24px">
+<a href="#top" style="display: inline-flex; align-items: center; gap: 12px; min-height: 44px; text-decoration: none; font-family: 'Bricolage Grotesque', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 19px; letter-spacing: -0.01em; color: #F6F4EE">Tina Nimrod Mahlon <span style="font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-weight: 400; font-size: 13px; letter-spacing: 0.08em; color: #A9B5AE">MBBS</span></a>
+<div class="nav-links" style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px 28px">
+<a href="#profile" style="display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; font-size: 15px; font-weight: 500; color: #DEDCD3">Profile</a>
+<a href="#experience" style="display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; font-size: 15px; font-weight: 500; color: #DEDCD3">Experience</a>
+<a href="#practice" style="display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; font-size: 15px; font-weight: 500; color: #DEDCD3">Areas of practice</a>
+<a href="#training" style="display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; font-size: 15px; font-weight: 500; color: #DEDCD3">Training</a>
+<a href="#contact" style="display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; font-size: 15px; font-weight: 500; color: #DEDCD3">Contact</a>
+</div>
+</nav>
+
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 48px 64px; padding-top: 40px; padding-bottom: 72px">
+
+<div style="flex: 1.25 1 520px; min-width: 0; display: flex; flex-direction: column; align-items: flex-start">
+<p style="margin: 0 0 24px; display: flex; align-items: center; gap: 12px; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: #A9B5AE"><span aria-hidden="true" style="display: inline-block; width: 10px; height: 10px; background: var(--accent)"></span>Medical doctor · Abuja, Nigeria</p>
+<h1 style="margin: 0 0 28px; font-family: 'Bricolage Grotesque', 'Arial Narrow', sans-serif; font-weight: 700; font-size: clamp(44px, 6vw, 84px); line-height: 0.98; letter-spacing: -0.03em; color: #FFFEFA; text-wrap: balance">Dr. Tina Nimrod Mahlon</h1>
+<p style="margin: 0 0 20px; max-width: 600px; font-family: 'Bricolage Grotesque', 'Arial Narrow', sans-serif; font-weight: 500; font-size: clamp(20px, 2vw, 26px); line-height: 1.32; letter-spacing: -0.01em; color: #F6F4EE; text-wrap: pretty">I bring emergency, primary and humanitarian care to communities where it is hardest to reach.</p>
+<p style="margin: 0 0 36px; max-width: 560px; font-size: 17px; line-height: 1.6; color: #C2CAC4; text-wrap: pretty">I trained at the University of Maiduguri and now work at Royal Orthopedic Hospital, Abuja. Before that I served as medical director of a clinic and maternity in Abuja, and worked in a teaching hospital, a district hospital and an MSF stabilisation centre for severe acute malnutrition across Borno and Gombe States.</p>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 28px">
+<a href="mailto:tinanimrod28@gmail.com?subject=Opportunity%20for%20Dr.%20Mahlon" style="display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 26px; box-sizing: border-box; border-radius: 4px; background: var(--accent); color: #FFFFFF; text-decoration: none; font-weight: 600; font-size: 16px">Get in touch <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></a>
+<a href="#experience" style="display: inline-flex; align-items: center; min-height: 52px; font-weight: 600; font-size: 16px; color: #F6F4EE; text-underline-offset: 6px; text-decoration-thickness: 1px">See my experience</a>
+</div>
+</div>
+
+<figure style="flex: 1 1 380px; min-width: 0; margin: 0; display: flex; flex-direction: column; gap: 14px">
+<div style="aspect-ratio: 4 / 5; overflow: hidden; border-radius: 6px; background: #1E2E29">
+<img src="../assets/portrait.jpg" alt="Portrait of Dr. Tina Nimrod Mahlon in grey scrubs, smiling over her shoulder with a white coat and red stethoscope" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 18%">
+</div>
+<figcaption style="font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 13px; letter-spacing: 0.04em; color: #A9B5AE">Photograph: Stanley Mshelia Photography</figcaption>
+</figure>
+
+</div>
+
+<div aria-hidden="true" class="ecg" style="height: 48px; overflow: hidden; color: #E5484D">
+<svg aria-hidden="true" width="2400" height="48" viewBox="0 0 2400 48" style="display: block">
+<path class="ecg-line" d="M0 30H150q7 -9 14 0h12l5 5l9 -31l9 40l6 -14h18q10 -11 20 0H2400"></path>
+<path class="ecg-sweep" d="M0 30H150q7 -9 14 0h12l5 5l9 -31l9 40l6 -14h18q10 -11 20 0H2400"></path>
+</svg>
+</div>
+
+<dl class="facts" style="margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr)); gap: 24px 40px; padding-block: 16px 36px">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<dt style="font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: #A9B5AE">Qualification</dt>
+<dd style="margin: 0; font-size: 16px; font-weight: 500; color: #F6F4EE">MBBS, University of Maiduguri, 2024</dd>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<dt style="font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: #A9B5AE">Focus</dt>
+<dd style="margin: 0; font-size: 16px; font-weight: 500; color: #F6F4EE">Emergency, primary and humanitarian care</dd>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<dt style="font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: #A9B5AE">Currently</dt>
+<dd style="margin: 0; font-size: 16px; font-weight: 500; color: #F6F4EE">Royal Orthopedic Hospital, Abuja</dd>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<dt style="font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: #A9B5AE">Languages</dt>
+<dd style="margin: 0; font-size: 16px; font-weight: 500; color: #F6F4EE">English · Hausa · Tangale</dd>
+</div>
+</dl>
+
+</div>
+</header>
+
+<main>
+
+<section id="profile" aria-labelledby="profile-h" style="padding-block: clamp(64px, 8vw, 104px)">
+<div class="wrap" style="width: 100%; max-width: 1264px; margin: 0 auto; padding-inline: 32px; box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 24px 64px">
+<div class="profile-aside" style="flex: 1 1 220px; min-width: 0">
+<h2 id="profile-h" style="margin: 0; display: flex; align-items: baseline; gap: 14px; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-weight: 500; font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase; color: #15231F"><span style="color: var(--accent)">01</span>Profile</h2>
+<figure class="profile-map" style="margin: 40px 0 0; max-width: 300px; display: flex; flex-direction: column; gap: 14px">
+<svg role="img" aria-label="Outline map of Nigeria marking Maiduguri, Billiri and Abuja, joined in the order I have worked in them" viewBox="0 0 300 248" style="display: block; width: 100%; height: auto; color: var(--accent)">
+<path class="map-land" d="M266 14L277 29L280 45L287 47L290 51L289 66L280 72L275 73L268 81L264 88L262 98L258 101L256 112L250 116L246 132L242 135L238 135L229 159L223 167L225 170L219 176L216 183L209 187L205 179L196 172L191 176L186 176L185 173L176 179L174 184L159 197L156 202L153 216L148 226L145 227L140 223L142 229L141 231L126 232L124 229L122 231L118 231L113 227L115 230L115 232L109 235L106 227L108 236L103 236L101 233L101 236L94 237L94 234L92 237L89 237L78 229L73 218L75 217L73 217L73 213L76 212L77 209L73 211L69 208L75 206L72 206L72 204L68 206L67 205L66 202L61 196L51 189L29 187L34 183L27 184L25 188L10 188L12 180L11 174L12 162L10 152L12 125L18 124L21 115L25 110L25 107L30 104L31 102L32 94L36 92L37 88L34 76L29 69L29 66L33 60L32 57L32 42L42 32L44 20L54 14L70 13L76 10L95 15L110 31L119 28L131 23L137 24L152 33L172 35L183 26L193 23L215 22L228 26L231 29L239 29L244 23L249 20L259 15Z"></path>
+<path class="map-route" d="M255 59Q240 93 210 105Q160 104 123 124"></path>
+<circle class="map-ping" cx="255" cy="59" r="5" style="animation-delay: 0s"></circle>
+<circle class="map-ping" cx="210" cy="105" r="5" style="animation-delay: 0.8s"></circle>
+<circle class="map-ping" cx="123" cy="124" r="6" style="animation-delay: 1.6s"></circle>
+<circle class="map-dot" cx="255" cy="59" r="4"></circle>
+<circle class="map-dot" cx="210" cy="105" r="4"></circle>
+<circle class="map-dot" cx="123" cy="124" r="5.5"></circle>
+<text class="map-label map-end" x="245" y="49">Maiduguri</text>
+<text class="map-label map-mid" x="212" y="129">Billiri</text>
+<text class="map-label map-mid" x="123" y="147">Abuja</text>
+</svg>
+<figcaption style="font-size: 14px; line-height: 1.5; color: #5C6660">Where I have worked: Maiduguri, then Billiri, and now Abuja.</figcaption>
+</figure>
+</div>
+<div style="flex: 3 1 560px; min-width: 0">
+<p style="margin: 0 0 28px; font-family: 'Bricolage Grotesque', 'Arial Narrow', sans-serif; font-weight: 500; font-size: clamp(24px, 2.5vw, 34px); line-height: 1.24; letter-spacing: -0.02em; color: #15231F; text-wrap: pretty">I am a medically trained humanitarian, committed to equitable, crisis-responsive healthcare in underserved and disaster-affected communities.</p>
+<p style="margin: 0; max-width: 700px; font-size: 18px; line-height: 1.65; color: #2E3B36; text-wrap: pretty">My work so far spans patient assessment, emergency care and the day-to-day running of clinical teams. I am careful with detail, comfortable carrying several responsibilities at once, and I communicate easily across cultures and languages. Above all I work to humanitarian principles: every patient is treated with dignity, neutrality and confidentiality.</p>
+
+<div data-stats style="margin-top: 56px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: 32px 40px">
+<div class="stat" style="display: flex; flex-direction: column; gap: 10px; padding-top: 22px; border-top: 1px solid #15231F">
+<span style="font-family: 'Bricolage Grotesque', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 56px; line-height: 1; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; color: var(--accent)" data-count="50" data-suffix="+">50+</span>
+<span style="font-size: 16px; line-height: 1.5; color: #2E3B36">patients treated every week across outpatient and inpatient care at General Hospital Billiri</span>
+</div>
+<div class="stat" style="display: flex; flex-direction: column; gap: 10px; padding-top: 22px; border-top: 1px solid #15231F">
+<span style="font-family: 'Bricolage Grotesque', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 56px; line-height: 1; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; color: var(--accent)" data-count="5">5</span>
+<span style="font-size: 16px; line-height: 1.5; color: #2E3B36">clinical rotations completed: paediatrics, internal medicine, emergency care, surgery, and obstetrics &amp; gynaecology</span>
+</div>
+<div class="stat" style="display: flex; flex-direction: column; gap: 10px; padding-top: 22px; border-top: 1px solid #15231F">
+<span style="font-family: 'Bricolage Grotesque', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 56px; line-height: 1; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; color: var(--accent)" data-count="3">3</span>
+<span style="font-size: 16px; line-height: 1.5; color: #2E3B36">working languages for consultation and counselling: English, Hausa and Tangale</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="experience" aria-labelledby="experience-h" style="background: #F2EAE1; padding-block: clamp(64px, 8vw, 104px)">
+<div class="wrap" style="width: 100%; max-width: 1264px; margin: 0 auto; padding-inline: 32px; box-sizing: border-box">
+
+<div style="display: flex; flex-wrap: wrap; gap: 16px 64px; margin-bottom: 48px">
+<div style="flex: 1 1 220px; min-width: 0">
+<p style="margin: 0; display: flex; align-items: baseline; gap: 14px; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-weight: 500; font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase; color: #15231F"><span style="color: var(--accent)">02</span>Experience</p>
+</div>
+<div style="flex: 3 1 560px; min-width: 0">
+<h2 id="experience-h" style="margin: 0; font-family: 'Bricolage Grotesque', 'Arial Narrow', sans-serif; font-weight: 700; font-size: clamp(32px, 4vw, 52px); line-height: 1.05; letter-spacing: -0.03em; color: #15231F; text-wrap: balance">Five settings, one standard of care.</h2>
+</div>
+</div>
+
+<div class="exp-list" style="position: relative">
+<div aria-hidden="true" class="vein" style="position: absolute; top: 0; bottom: 0; left: calc(25% - 47px); width: 120px; overflow: hidden; pointer-events: none; color: var(--accent); mask-image: linear-gradient(to bottom, transparent 0, #000 48px, #000 calc(100% - 96px), transparent 100%)">
+<svg aria-hidden="true" width="120" height="7500" viewBox="0 0 120 7500" style="display: block">
+<path class="vein-branch-m" d="M93 150c4 10 12 12 16 26M84 300c-3 8-8 10-9 20M91 450c4 10 12 14 15 28M85 600c4 8 10 12 14 24M92 750c-3 8-8 12-10 22M86 900c4 10 12 12 16 26M90 1050c4 8 10 14 13 26M83 1200c-3 8-7 10-8 20M89 1350c4 10 12 12 15 26M93 1500c-3 8-8 12-10 22M85 1650c4 10 12 14 16 28M91 1800c4 8 10 12 13 24M84 1950c-3 8-7 12-9 22M90 2100c4 10 12 12 15 26M86 2250c4 8 10 14 14 26M93 2400c-3 8-8 10-10 20M87 2550c4 10 12 12 16 26M83 2700c4 8 10 12 14 24M90 2850c-3 8-8 12-10 22M85 3000c4 10 12 14 16 28M91 3150c4 8 10 12 13 24M88 3300c-3 8-8 10-9 20M93 3450c4 10 10 12 14 26M86 3600c4 8 12 14 16 26M92 3750c-3 8-8 12-10 22M87 3900c4 10 12 12 16 26M91 4050c4 8 10 12 13 24M85 4200c-3 8-7 12-8 22M92 4350c4 10 12 12 15 26M88 4500c-3 8-8 10-9 20M93 4650c4 10 10 12 14 26M84 4800c4 8 12 14 16 26M91 4950c-3 8-8 12-10 22M85 5100c4 10 12 12 16 26M92 5250c4 8 10 12 13 24M86 5400c-3 8-7 12-8 22M90 5550c4 10 12 12 15 26M83 5700c4 8 12 14 16 26M89 5850c-3 8-8 10-9 20M93 6000c4 10 10 12 14 26M85 6150c4 8 12 14 16 26M91 6300c-3 8-8 12-10 22M84 6450c4 10 12 12 16 26M90 6600c4 8 10 12 13 24M86 6750c-3 8-7 12-8 22M93 6900c4 10 10 12 14 26"></path>
+<path class="vein-branch" d="M93 150c-6 20-34 24-44 58M49 208c-4 12-14 16-18 30M49 208c2 14-2 22 4 34M84 300c6 14 16 16 20 34M91 450c-10 16-40 14-52 44M39 494c-8 8-16 22-14 38M85 600c-4 22-22 30-26 60M92 750c4 16 12 22 12 40M86 900c-12 14-36 20-46 54M40 954c-10 6-18 18-20 32M40 954c0 14 6 24 2 40M90 1050c-6 24-26 26-32 56M83 1200c8 12 18 20 20 38M89 1350c-10 18-38 22-50 56M39 1406c-6 12-16 18-16 34M93 1500c-6 22-24 34-30 62M85 1650c-12 12-34 22-42 50M43 1700c-10 8-16 20-18 34M43 1700c2 12 8 22 4 38M91 1800c5 14 12 24 13 40M84 1950c-8 20-30 24-38 56M90 2100c-10 16-40 18-50 50M40 2150c-8 10-14 22-12 38M86 2250c-4 22-20 32-24 60M93 2400c4 14 10 22 10 38M87 2550c-12 14-36 20-46 54M41 2604c-8 8-16 20-18 34M83 2700c-6 22-22 30-28 58M90 2850c-10 16-38 20-48 52M85 3000c-6 20-24 28-30 58"></path>
+<path class="vein-vessel" d="M88 0c0 50 5 100 5 150s-9 100-9 150s7 100 7 150s-6 100-6 150s7 100 7 150s-6 100-6 150s4 100 4 150s-7 100-7 150s6 100 6 150s4 100 4 150s-8 100-8 150s6 100 6 150s-7 100-7 150s6 100 6 150s-4 100-4 150s7 100 7 150s-6 100-6 150s-4 100-4 150s7 100 7 150s-5 100-5 150s6 100 6 150s-3 100-3 150s5 100 5 150s-7 100-7 150s6 100 6 150s-5 100-5 150s4 100 4 150s-6 100-6 150s7 100 7 150s-4 100-4 150s5 100 5 150s-9 100-9 150s7 100 7 150s-6 100-6 150s7 100 7 150s-6 100-6 150s4 100 4 150s-7 100-7 150s6 100 6 150s4 100 4 150s-8 100-8 150s6 100 6 150s-7 100-7 150s6 100 6 150s-4 100-4 150s7 100 7 150s-6 100-6 150s-4 100-4 150s7 100 7 150s-2 100-2 150"></path>
+<path class="vein-flow" d="M88 0c0 50 5 100 5 150s-9 100-9 150s7 100 7 150s-6 100-6 150s7 100 7 150s-6 100-6 150s4 100 4 150s-7 100-7 150s6 100 6 150s4 100 4 150s-8 100-8 150s6 100 6 150s-7 100-7 150s6 100 6 150s-4 100-4 150s7 100 7 150s-6 100-6 150s-4 100-4 150s7 100 7 150s-5 100-5 150s6 100 6 150s-3 100-3 150s5 100 5 150s-7 100-7 150s6 100 6 150s-5 100-5 150s4 100 4 150s-6 100-6 150s7 100 7 150s-4 100-4 150s5 100 5 150s-9 100-9 150s7 100 7 150s-6 100-6 150s7 100 7 150s-6 100-6 150s4 100 4 150s-7 100-7 150s6 100 6 150s4 100 4 150s-8 100-8 150s6 100 6 150s-7 100-7 150s6 100 6 150s-4 100-4 150s7 100 7 150s-6 100-6 150s-4 100-4 150s7 100 7 150s-2 100-2 150"></path>
+<path class="vein-cells" d="M88 0c0 50 5 100 5 150s-9 100-9 150s7 100 7 150s-6 100-6 150s7 100 7 150s-6 100-6 150s4 100 4 150s-7 100-7 150s6 100 6 150s4 100 4 150s-8 100-8 150s6 100 6 150s-7 100-7 150s6 100 6 150s-4 100-4 150s7 100 7 150s-6 100-6 150s-4 100-4 150s7 100 7 150s-5 100-5 150s6 100 6 150s-3 100-3 150s5 100 5 150s-7 100-7 150s6 100 6 150s-5 100-5 150s4 100 4 150s-6 100-6 150s7 100 7 150s-4 100-4 150s5 100 5 150s-9 100-9 150s7 100 7 150s-6 100-6 150s7 100 7 150s-6 100-6 150s4 100 4 150s-7 100-7 150s6 100 6 150s4 100 4 150s-8 100-8 150s6 100 6 150s-7 100-7 150s6 100 6 150s-4 100-4 150s7 100 7 150s-6 100-6 150s-4 100-4 150s7 100 7 150s-2 100-2 150"></path>
+</svg>
+</div>
+
+<article class="exp-item" style="position: relative; display: flex; flex-wrap: wrap; gap: 16px 64px; padding-block: 40px; border-top: 1px solid #15231F">
+<div style="flex: 1 1 220px; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 6px">
+<span style="font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 14px; letter-spacing: 0.04em; color: #15231F">Sep 2026 – Present</span>
+<span aria-hidden="true" class="vein-twig" style="position: absolute; left: calc(25% + 35px); top: 52px; display: flex; align-items: center; width: 30px; height: 10px; color: var(--accent)"><span style="flex: 1; height: 2px; background: currentColor; opacity: 0.5"></span><span style="position: relative; flex: none; width: 10px; height: 10px; border-radius: 50%; background: currentColor"><span class="vein-ring" style="animation-delay: 0s"></span></span></span>
+<span style="font-size: 15px; color: #5C6660">Abuja, FCT</span>
+<span style="margin-top: 8px; padding: 4px 10px; border-radius: 4px; background: var(--accent); font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: #FFFFFF">Current role</span>
+</div>
+<div style="flex: 3 1 560px; min-width: 0">
+<h3 style="margin: 0 0 4px; font-family: 'Bricolage Grotesque', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 30px; line-height: 1.15; letter-spacing: -0.02em; color: #15231F">Medical Doctor</h3>
+<p style="margin: 0 0 16px; font-size: 17px; font-weight: 600; color: #2E3B36">Royal Orthopedic Hospital, Abuja</p>
+<p style="margin: 0 0 20px; max-width: 720px; font-size: 18px; line-height: 1.6; color: #15231F; text-wrap: pretty">I care for orthopaedic patients in clinic and on the wards every day, from first history to treatment plan, and assist in theatre on minor and major cases alike.</p>
+<ul style="list-style: none; margin: 0 0 24px; padding: 0; max-width: 720px; display: flex; flex-direction: column; gap: 10px">
+<li style="display: flex; gap: 14px; font-size: 16px; line-height: 1.55; color: #2E3B36"><span aria-hidden="true" style="flex: none; color: #8A9A8D">—</span><span>Run daily consultations for outpatients and inpatients, taking histories, making diagnoses and outlining treatment plans.</span></li>
+<li style="display: flex; gap: 14px; font-size: 16px; line-height: 1.55; color: #2E3B36"><span aria-hidden="true" style="flex: none; color: #8A9A8D">—</span><span>Carry out inpatient work-ups, ordering laboratory investigations and collecting samples.</span></li>
+<li style="display: flex; gap: 14px; font-size: 16px; line-height: 1.55; color: #2E3B36"><span aria-hidden="true" style="flex: none; color: #8A9A8D">—</span><span>Assist in orthopaedic surgery, including open reduction of fractures and hip and knee replacements.</span></li>
+<li style="display: flex; gap: 14px; font-size: 16px; line-height: 1.55; color: #2E3B36"><span aria-hidden="true" style="flex: none; color: #8A9A8D">—</span><span>Manage the full range of everyday orthopaedic cases, both minor and major.</span></li>
+</ul>
+<ul aria-label="Skills used" style="list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px">
+<li style="padding: 5px 12px; border: 1px solid #C9BFB2; border-radius: 999px; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 13px; color: #2E3B36">Orthopaedics</li>
+<li style="padding: 5px 12px; border: 1px solid #C9BFB2; border-radius: 999px; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 13px; color: #2E3B36">Fracture care</li>
+<li style="padding: 5px 12px; border: 1px solid #C9BFB2; border-radius: 999px; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 13px; color: #2E3B36">Joint replacement</li>
+<li style="padding: 5px 12px; border: 1px solid #C9BFB2; border-radius: 999px; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 13px; color: #2E3B36">Surgical assisting</li>
+</ul>
+</div>
+</article>
+
+<article class="exp-item" style="position: relative; display: flex; flex-wrap: wrap; gap: 16px 64px; padding-block: 40px; border-top: 1px solid #D8D2C7">
+<div style="flex: 1 1 220px; min-width: 0; display: flex; flex-direction: column; gap: 6px">
+<span style="font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 14px; letter-spacing: 0.04em; color: #15231F">Feb – Aug 2026</span>
+<span aria-hidden="true" class="vein-twig" style="position: absolute; left: calc(25% + 35px); top: 52px; display: flex; align-items: center; width: 30px; height: 10px; color: var(--accent)"><span style="flex: 1; height: 2px; background: currentColor; opacity: 0.5"></span><span style="position: relative; flex: none; width: 10px; height: 10px; border-radius: 50%; background: currentColor"><span class="vein-ring" style="animation-delay: 0.3s"></span></span></span>
+<span style="font-size: 15px; color: #5C6660">Lugbe, Abuja</span>
+</div>
+<div style="flex: 3 1 560px; min-width: 0">
+<h3 style="margin: 0 0 4px; font-family: 'Bricolage Grotesque', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 30px; line-height: 1.15; letter-spacing: -0.02em; color: #15231F">Medical Director</h3>
+<p style="margin: 0 0 16px; font-size: 17px; font-weight: 600; color: #2E3B36">M3 Clinic and Maternity</p>
+<p style="margin: 0 0 20px; max-width: 720px; font-size: 18px; line-height: 1.6; color: #15231F; text-wrap: pretty">I led the clinic as medical director while remaining its hands-on doctor, seeing every patient from first history to discharge and heading the whole staff team.</p>
+<ul style="list-style: none; margin: 0 0 24px; padding: 0; max-width: 720px; display: flex; flex-direction: column; gap: 10px">
+<li style="display: flex; gap: 14px; font-size: 16px; line-height: 1.55; color: #2E3B36"><span aria-hidden="true" style="flex: none; color: #8A9A8D">—</span><span>Saw all patients personally: took histories, examined, requested investigations, made diagnoses and treated.</span></li>
+<li style="display: flex; gap: 14px; font-size: 16px; line-height: 1.55; color: #2E3B36"><span aria-hidden="true" style="flex: none; color: #8A9A8D">—</span><span>Admitted patients who needed inpatient care and managed them until they were well enough for discharge.</span></li>
+<li style="display: flex; gap: 14px; font-size: 16px; line-height: 1.55; color: #2E3B36"><span aria-hidden="true" style="flex: none; color: #8A9A8D">—</span><span>Headed the full clinic team of nurses, laboratory technicians and pharmacists.</span></li>
+<li style="display: flex; gap: 14px; font-size: 16px; line-height: 1.55; color: #2E3B36"><span aria-hidden="true" style="flex: none; color: #8A9A8D">—</span><span>Ran antenatal booking and follow-up visits, and performed ultrasound scans for pregnant women.</span></li>
+</ul>
+<ul aria-label="Skills used" style="list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px">
+<li style="padding: 5px 12px; border: 1px solid #C9BFB2; border-radius: 999px; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 13px; color: #2E3B36">Clinical leadership</li>
+<li style="padding: 5px 12px; border: 1px solid #C9BFB2; border-radius: 999px; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 13px; color: #2E3B36">General practice</li>
+<li style="padding: 5px 12px; border: 1px solid #C9BFB2; border-radius: 999px; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 13px; color: #2E3B36">Antenatal care</li>
+<li style="padding: 5px 12px; border: 1px solid #C9BFB2; border-radius: 999px; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 13px; color: #2E3B36">Obstetric ultrasound</li>
+</ul>
+</div>
+</article>
+
+<article class="exp-item" style="position: relative; display: flex; flex-wrap: wrap; gap: 16px 64px; padding-block: 40px; border-top: 1px solid #D8D2C7">
+<div style="flex: 1 1 220px; min-width: 0; display: flex; flex-direction: column; gap: 6px">
+<span style="font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 14px; letter-spacing: 0.04em; color: #15231F">Aug – Dec 2025</span>
+<span aria-hidden="true" class="vein-twig" style="position: absolute; left: calc(25% + 35px); top: 52px; display: flex; align-items: center; width: 30px; height: 10px; color: var(--accent)"><span style="flex: 1; height: 2px; background: currentColor; opacity: 0.5"></span><span style="position: relative; flex: none; width: 10px; height: 10px; border-radius: 50%; background: currentColor"><span class="vein-ring" style="animation-delay: 0.6s"></span></span></span>
+<span style="font-size: 15px; color: #5C6660">Billiri, Gombe State</span>
+</div>
+<div style="flex: 3 1 560px; min-width: 0">
+<h3 style="margin: 0 0 4px; font-family: 'Bricolage Grotesque', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 30px; line-height: 1.15; letter-spacing: -0.02em; color: #15231F">Medical Doctor</h3>
+<p style="margin: 0 0 16px; font-size: 17px; font-weight: 600; color: #2E3B36">General Hospital Billiri</p>
+<p style="margin: 0 0 20px; max-width: 720px; font-size: 18px; line-height: 1.6; color: #15231F; text-wrap: pretty">I ran outpatient clinics and ward rounds at a district hospital, led the health-worker team and covered the emergency room when patient numbers peaked.</p>
+<ul style="list-style: none; margin: 0 0 24px; padding: 0; max-width: 720px; display: flex; flex-direction: column; gap: 10px">
+<li style="display: flex; gap: 14px; font-size: 16px; line-height: 1.55; color: #2E3B36"><span aria-hidden="true" style="flex: none; color: #8A9A8D">—</span><span>Treated 50+ patients a week with compassionate, patient-centred care in outpatient and inpatient settings.</span></li>
+<li style="display: flex; gap: 14px; font-size: 16px; line-height: 1.55; color: #2E3B36"><span aria-hidden="true" style="flex: none; color: #8A9A8D">—</span><span>Led a team of health workers, setting team plans and seeing them carried out on time.</span></li>
+<li style="display: flex; gap: 14px; font-size: 16px; line-height: 1.55; color: #2E3B36"><span aria-hidden="true" style="flex: none; color: #8A9A8D">—</span><span>Triaged and stabilised patients in the emergency room during periods of peak influx.</span></li>
+<li style="display: flex; gap: 14px; font-size: 16px; line-height: 1.55; color: #2E3B36"><span aria-hidden="true" style="flex: none; color: #8A9A8D">—</span><span>Performed caesarean sections, appendectomies, herniorrhaphies and cystectomies.</span></li>
+<li style="display: flex; gap: 14px; font-size: 16px; line-height: 1.55; color: #2E3B36"><span aria-hidden="true" style="flex: none; color: #8A9A8D">—</span><span>Counselled patients and caregivers on conditions, treatment plans and prognosis, and referred promptly when a case was beyond hospital level.</span></li>
+</ul>
+<ul aria-label="Skills used" style="list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px">
+<li style="padding: 5px 12px; border: 1px solid #C9BFB2; border-radius: 999px; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 13px; color: #2E3B36">Outpatient &amp; inpatient</li>
+<li style="padding: 5px 12px; border: 1px solid #C9BFB2; border-radius: 999px; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 13px; color: #2E3B36">Emergency triage</li>
+<li style="padding: 5px 12px; border: 1px solid #C9BFB2; border-radius: 999px; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 13px; color: #2E3B36">Surgery</li>
+<li style="padding: 5px 12px; border: 1px solid #C9BFB2; border-radius: 999px; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 13px; color: #2E3B36">Team leadership</li>
+</ul>
+</div>
+</article>
+
+<article class="exp-item" style="position: relative; display: flex; flex-wrap: wrap; gap: 16px 64px; padding-block: 40px; border-top: 1px solid #D8D2C7">
+<div style="flex: 1 1 220px; min-width: 0; display: flex; flex-direction: column; gap: 6px">
+<span style="font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 14px; letter-spacing: 0.04em; color: #15231F">Apr 2024 – Mar 2025</span>
+<span aria-hidden="true" class="vein-twig" style="position: absolute; left: calc(25% + 35px); top: 52px; display: flex; align-items: center; width: 30px; height: 10px; color: var(--accent)"><span style="flex: 1; height: 2px; background: currentColor; opacity: 0.5"></span><span style="position: relative; flex: none; width: 10px; height: 10px; border-radius: 50%; background: currentColor"><span class="vein-ring" style="animation-delay: 1.2s"></span></span></span>
+<span style="font-size: 15px; color: #5C6660">Maiduguri, Borno State</span>
+</div>
+<div style="flex: 3 1 560px; min-width: 0">
+<h3 style="margin: 0 0 4px; font-family: 'Bricolage Grotesque', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 30px; line-height: 1.15; letter-spacing: -0.02em; color: #15231F">House Officer</h3>
+<p style="margin: 0 0 16px; font-size: 17px; font-weight: 600; color: #2E3B36">University of Maiduguri Teaching Hospital (UMTH)</p>
+<p style="margin: 0 0 20px; max-width: 720px; font-size: 18px; line-height: 1.6; color: #15231F; text-wrap: pretty">I spent a year in supervised practice, rotating through paediatrics, internal medicine, emergency care, surgery, and obstetrics &amp; gynaecology.</p>
+<ul style="list-style: none; margin: 0 0 24px; padding: 0; max-width: 720px; display: flex; flex-direction: column; gap: 10px">
+<li style="display: flex; gap: 14px; font-size: 16px; line-height: 1.55; color: #2E3B36"><span aria-hidden="true" style="flex: none; color: #8A9A8D">—</span><span>Ran outpatient consultations and daily ward rounds in every department of posting.</span></li>
+<li style="display: flex; gap: 14px; font-size: 16px; line-height: 1.55; color: #2E3B36"><span aria-hidden="true" style="flex: none; color: #8A9A8D">—</span><span>Weighed and screened under-fives daily with bedside anthropometric tools, managed malnutrition to WHO protocol and referred severe acute cases promptly.</span></li>
+<li style="display: flex; gap: 14px; font-size: 16px; line-height: 1.55; color: #2E3B36"><span aria-hidden="true" style="flex: none; color: #8A9A8D">—</span><span>Registered and followed up antenatal patients, conducted deliveries and managed antepartum, intrapartum and postpartum complications.</span></li>
+<li style="display: flex; gap: 14px; font-size: 16px; line-height: 1.55; color: #2E3B36"><span aria-hidden="true" style="flex: none; color: #8A9A8D">—</span><span>Resuscitated newborns with low APGAR scores after delivery.</span></li>
+<li style="display: flex; gap: 14px; font-size: 16px; line-height: 1.55; color: #2E3B36"><span aria-hidden="true" style="flex: none; color: #8A9A8D">—</span><span>Assisted in and carried out surgical procedures including caesarean section and appendectomy.</span></li>
+</ul>
+<ul aria-label="Skills used" style="list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px">
+<li style="padding: 5px 12px; border: 1px solid #C9BFB2; border-radius: 999px; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 13px; color: #2E3B36">Paediatrics</li>
+<li style="padding: 5px 12px; border: 1px solid #C9BFB2; border-radius: 999px; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 13px; color: #2E3B36">Obstetrics &amp; gynaecology</li>
+<li style="padding: 5px 12px; border: 1px solid #C9BFB2; border-radius: 999px; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 13px; color: #2E3B36">Neonatal resuscitation</li>
+<li style="padding: 5px 12px; border: 1px solid #C9BFB2; border-radius: 999px; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 13px; color: #2E3B36">Malnutrition screening</li>
+<li style="padding: 5px 12px; border: 1px solid #C9BFB2; border-radius: 999px; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 13px; color: #2E3B36">Surgery</li>
+<li style="padding: 5px 12px; border: 1px solid #C9BFB2; border-radius: 999px; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 13px; color: #2E3B36">Internal medicine</li>
+</ul>
+</div>
+</article>
+
+<article class="exp-item" style="position: relative; display: flex; flex-wrap: wrap; gap: 16px 64px; padding-top: 40px; border-top: 1px solid #D8D2C7">
+<div style="flex: 1 1 220px; min-width: 0; display: flex; flex-direction: column; gap: 6px">
+<span style="font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 14px; letter-spacing: 0.04em; color: #15231F">Mar – May 2022</span>
+<span aria-hidden="true" class="vein-twig" style="position: absolute; left: calc(25% + 35px); top: 52px; display: flex; align-items: center; width: 30px; height: 10px; color: var(--accent)"><span style="flex: 1; height: 2px; background: currentColor; opacity: 0.5"></span><span style="position: relative; flex: none; width: 10px; height: 10px; border-radius: 50%; background: currentColor"><span class="vein-ring" style="animation-delay: 1.8s"></span></span></span>
+<span style="font-size: 15px; color: #5C6660">Maiduguri, Borno State</span>
+</div>
+<div style="flex: 3 1 560px; min-width: 0">
+<h3 style="margin: 0 0 4px; font-family: 'Bricolage Grotesque', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 30px; line-height: 1.15; letter-spacing: -0.02em; color: #15231F">Medical Doctor</h3>
+<p style="margin: 0 0 16px; font-size: 17px; font-weight: 600; color: #2E3B36">Médecins Sans Frontières (MSF), Operational Centre Paris</p>
+<p style="margin: 0 0 20px; max-width: 720px; font-size: 18px; line-height: 1.6; color: #15231F; text-wrap: pretty">I provided clinical care and supervision in a stabilisation centre for children with severe acute malnutrition and medical complications.</p>
+<ul style="list-style: none; margin: 0 0 24px; padding: 0; max-width: 720px; display: flex; flex-direction: column; gap: 10px">
+<li style="display: flex; gap: 14px; font-size: 16px; line-height: 1.55; color: #2E3B36"><span aria-hidden="true" style="flex: none; color: #8A9A8D">—</span><span>Supervised the daily clinical management of stabilisation-centre patients, keeping admission, discharge and transfer criteria understood and respected by the team.</span></li>
+<li style="display: flex; gap: 14px; font-size: 16px; line-height: 1.55; color: #2E3B36"><span aria-hidden="true" style="flex: none; color: #8A9A8D">—</span><span>Supported delivery of community-based management of acute malnutrition (CMAM) and infant and young child feeding (IYCF) with nutrition and State Ministry of Health staff.</span></li>
+<li style="display: flex; gap: 14px; font-size: 16px; line-height: 1.55; color: #2E3B36"><span aria-hidden="true" style="flex: none; color: #8A9A8D">—</span><span>Followed hospitalised and internally displaced patients through daily visits, deciding discharges and transfers with fellow doctors and keeping families informed.</span></li>
+<li style="display: flex; gap: 14px; font-size: 16px; line-height: 1.55; color: #2E3B36"><span aria-hidden="true" style="flex: none; color: #8A9A8D">—</span><span>Conducted needs assessments and drafted reports, concept notes and project proposals.</span></li>
+<li style="display: flex; gap: 14px; font-size: 16px; line-height: 1.55; color: #2E3B36"><span aria-hidden="true" style="flex: none; color: #8A9A8D">—</span><span>Took part in cluster and inter-sectoral coordination meetings, and handled data collection, analysis and reporting.</span></li>
+</ul>
+<ul aria-label="Skills used" style="list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px">
+<li style="padding: 5px 12px; border: 1px solid #C9BFB2; border-radius: 999px; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 13px; color: #2E3B36">SAM stabilisation</li>
+<li style="padding: 5px 12px; border: 1px solid #C9BFB2; border-radius: 999px; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 13px; color: #2E3B36">CMAM &amp; IYCF</li>
+<li style="padding: 5px 12px; border: 1px solid #C9BFB2; border-radius: 999px; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 13px; color: #2E3B36">Needs assessment</li>
+<li style="padding: 5px 12px; border: 1px solid #C9BFB2; border-radius: 999px; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 13px; color: #2E3B36">Cluster coordination</li>
+</ul>
+</div>
+</article>
+</div>
+
+</div>
+</section>
+
+<section id="practice" aria-labelledby="practice-h" style="background: #15231F; color: #F6F4EE; padding-block: clamp(64px, 8vw, 104px)">
+<div class="wrap" style="width: 100%; max-width: 1264px; margin: 0 auto; padding-inline: 32px; box-sizing: border-box">
+
+<div style="display: flex; flex-wrap: wrap; gap: 16px 64px; margin-bottom: 56px">
+<div style="flex: 1 1 220px; min-width: 0">
+<p style="margin: 0; display: flex; align-items: baseline; gap: 14px; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-weight: 500; font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase; color: #F6F4EE"><span style="color: #A9B5AE">03</span>Areas of practice</p>
+</div>
+<div style="flex: 3 1 560px; min-width: 0">
+<h2 id="practice-h" style="margin: 0 0 16px; font-family: 'Bricolage Grotesque', 'Arial Narrow', sans-serif; font-weight: 700; font-size: clamp(32px, 4vw, 52px); line-height: 1.05; letter-spacing: -0.03em; color: #FFFEFA; text-wrap: balance">What I bring to a team.</h2>
+<p style="margin: 0; max-width: 640px; font-size: 18px; line-height: 1.6; color: #C2CAC4; text-wrap: pretty">Hands-on clinical skill, backed by the documentation, coordination and humanitarian standards that field programmes depend on.</p>
+</div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 24px; color: #E5484D">
+<div class="pcard" style="position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 12px; padding: 28px; border: 1px solid rgba(246, 244, 238, 0.14); border-radius: 6px; background: #1E2E29">
+<span aria-hidden="true" class="pcard-pulse"></span>
+<span style="font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 13px; letter-spacing: 0.08em; color: #A9B5AE">01</span>
+<h3 style="margin: 0; font-family: 'Bricolage Grotesque', 'Arial Narrow', sans-serif; font-weight: 600; font-size: 23px; line-height: 1.2; letter-spacing: -0.01em; color: #FFFEFA">Emergency &amp; primary care</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.6; color: #C2CAC4">Triage and stabilisation, outpatient clinics, ward rounds, clinical diagnosis and timely referral.</p>
+</div>
+<div class="pcard" style="position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 12px; padding: 28px; border: 1px solid rgba(246, 244, 238, 0.14); border-radius: 6px; background: #1E2E29">
+<span aria-hidden="true" class="pcard-pulse"></span>
+<span style="font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 13px; letter-spacing: 0.08em; color: #A9B5AE">02</span>
+<h3 style="margin: 0; font-family: 'Bricolage Grotesque', 'Arial Narrow', sans-serif; font-weight: 600; font-size: 23px; line-height: 1.2; letter-spacing: -0.01em; color: #FFFEFA">Nutrition in emergencies</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.6; color: #C2CAC4">Stabilisation-centre care for severe acute malnutrition, CMAM, IYCF and anthropometric screening.</p>
+</div>
+<div class="pcard" style="position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 12px; padding: 28px; border: 1px solid rgba(246, 244, 238, 0.14); border-radius: 6px; background: #1E2E29">
+<span aria-hidden="true" class="pcard-pulse"></span>
+<span style="font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 13px; letter-spacing: 0.08em; color: #A9B5AE">03</span>
+<h3 style="margin: 0; font-family: 'Bricolage Grotesque', 'Arial Narrow', sans-serif; font-weight: 600; font-size: 23px; line-height: 1.2; letter-spacing: -0.01em; color: #FFFEFA">Maternal &amp; newborn health</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.6; color: #C2CAC4">Antenatal care and obstetric ultrasound, deliveries, management of obstetric complications and neonatal resuscitation.</p>
+</div>
+<div class="pcard" style="position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 12px; padding: 28px; border: 1px solid rgba(246, 244, 238, 0.14); border-radius: 6px; background: #1E2E29">
+<span aria-hidden="true" class="pcard-pulse"></span>
+<span style="font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 13px; letter-spacing: 0.08em; color: #A9B5AE">04</span>
+<h3 style="margin: 0; font-family: 'Bricolage Grotesque', 'Arial Narrow', sans-serif; font-weight: 600; font-size: 23px; line-height: 1.2; letter-spacing: -0.01em; color: #FFFEFA">Surgical procedures</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.6; color: #C2CAC4">Caesarean section, appendectomy, herniorrhaphy and cystectomy, plus assisting in fracture fixation and hip and knee replacement.</p>
+</div>
+<div class="pcard" style="position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 12px; padding: 28px; border: 1px solid rgba(246, 244, 238, 0.14); border-radius: 6px; background: #1E2E29">
+<span aria-hidden="true" class="pcard-pulse"></span>
+<span style="font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 13px; letter-spacing: 0.08em; color: #A9B5AE">05</span>
+<h3 style="margin: 0; font-family: 'Bricolage Grotesque', 'Arial Narrow', sans-serif; font-weight: 600; font-size: 23px; line-height: 1.2; letter-spacing: -0.01em; color: #FFFEFA">Humanitarian practice</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.6; color: #C2CAC4">Accountability to Affected Populations, Sphere standards, gender-sensitive medical support and disaster response.</p>
+</div>
+<div class="pcard" style="position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 12px; padding: 28px; border: 1px solid rgba(246, 244, 238, 0.14); border-radius: 6px; background: #1E2E29">
+<span aria-hidden="true" class="pcard-pulse"></span>
+<span style="font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 13px; letter-spacing: 0.08em; color: #A9B5AE">06</span>
+<h3 style="margin: 0; font-family: 'Bricolage Grotesque', 'Arial Narrow', sans-serif; font-weight: 600; font-size: 23px; line-height: 1.2; letter-spacing: -0.01em; color: #FFFEFA">Data, reporting &amp; outreach</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.6; color: #C2CAC4">Clinical documentation and EMR, data collection and analysis, reporting, health promotion and community outreach.</p>
+</div>
+</div>
+
+</div>
+</section>
+
+<section id="research" aria-labelledby="research-h" style="padding-block: clamp(64px, 8vw, 104px)">
+<div class="wrap" style="width: 100%; max-width: 1264px; margin: 0 auto; padding-inline: 32px; box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 24px 64px">
+<div style="flex: 1 1 220px; min-width: 0">
+<p style="margin: 0; display: flex; align-items: baseline; gap: 14px; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-weight: 500; font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase; color: #15231F"><span style="color: var(--accent)">04</span>Research</p>
+</div>
+<div style="flex: 3 1 560px; min-width: 0">
+<h2 id="research-h" style="margin: 0 0 20px; max-width: 780px; font-family: 'Bricolage Grotesque', 'Arial Narrow', sans-serif; font-weight: 600; font-size: clamp(24px, 2.5vw, 34px); line-height: 1.24; letter-spacing: -0.02em; color: #15231F; text-wrap: pretty">Assessment of serum zinc levels in children under 12 months, with and without diarrhoea.</h2>
+<p style="margin: 0; max-width: 700px; font-size: 17px; line-height: 1.6; color: #2E3B36">I carried out this study at the University of Maiduguri Teaching Hospital and the State Specialist Hospital, Borno State.</p>
+</div>
+</div>
+</section>
+
+<section id="training" aria-labelledby="training-h" style="background: #F2EAE1; padding-block: clamp(64px, 8vw, 104px)">
+<div class="wrap" style="width: 100%; max-width: 1264px; margin: 0 auto; padding-inline: 32px; box-sizing: border-box">
+
+<div style="display: flex; flex-wrap: wrap; gap: 16px 64px; margin-bottom: 48px">
+<div style="flex: 1 1 220px; min-width: 0">
+<p style="margin: 0; display: flex; align-items: baseline; gap: 14px; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-weight: 500; font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase; color: #15231F"><span style="color: var(--accent)">05</span>Training</p>
+</div>
+<div style="flex: 3 1 560px; min-width: 0">
+<h2 id="training-h" style="margin: 0; font-family: 'Bricolage Grotesque', 'Arial Narrow', sans-serif; font-weight: 700; font-size: clamp(32px, 4vw, 52px); line-height: 1.05; letter-spacing: -0.03em; color: #15231F; text-wrap: balance">Education, certificates and service.</h2>
+</div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr)); gap: 40px">
+
+<div style="display: flex; flex-direction: column; gap: 20px; padding-top: 22px; border-top: 1px solid #15231F">
+<h3 style="margin: 0; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-weight: 500; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: #5C6660">Education</h3>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 17px; font-weight: 600; line-height: 1.4; color: #15231F">Bachelor of Medicine, Bachelor of Surgery (MBBS)</span>
+<span style="font-size: 15px; line-height: 1.5; color: #5C6660">University of Maiduguri, Borno State · 2024</span>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 20px; padding-top: 22px; border-top: 1px solid #15231F">
+<h3 style="margin: 0; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-weight: 500; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: #5C6660">Certificates</h3>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 17px; font-weight: 600; line-height: 1.4; color: #15231F">Integrated Disease Surveillance &amp; Response (IDSR)</span>
+<span style="font-size: 15px; line-height: 1.5; color: #5C6660">NPHCDA · 2025</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 17px; font-weight: 600; line-height: 1.4; color: #15231F">Newborn Care Foundation</span>
+<span style="font-size: 15px; line-height: 1.5; color: #5C6660">NPHCDA · 2025</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 17px; font-weight: 600; line-height: 1.4; color: #15231F">Hypertension Control in Nigeria</span>
+<span style="font-size: 15px; line-height: 1.5; color: #5C6660">NPHCDA · 2025</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 17px; font-weight: 600; line-height: 1.4; color: #15231F">Basic Life Support (BLS)</span>
+<span style="font-size: 15px; line-height: 1.5; color: #5C6660">Training completed</span>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 20px; padding-top: 22px; border-top: 1px solid #15231F">
+<h3 style="margin: 0; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-weight: 500; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: #5C6660">Volunteering</h3>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 17px; font-weight: 600; line-height: 1.4; color: #15231F">Flood Response Medical Volunteer</span>
+<span style="font-size: 15px; line-height: 1.5; color: #5C6660">Borno State · 2024</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 17px; font-weight: 600; line-height: 1.4; color: #15231F">CMDA medical outreaches</span>
+<span style="font-size: 15px; line-height: 1.5; color: #5C6660">Borno State</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 17px; font-weight: 600; line-height: 1.4; color: #15231F">Public Health Webinar Series</span>
+<span style="font-size: 15px; line-height: 1.5; color: #5C6660">Continuing education</span>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 20px; padding-top: 22px; border-top: 1px solid #15231F">
+<h3 style="margin: 0; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-weight: 500; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: #5C6660">Languages &amp; tools</h3>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 17px; font-weight: 600; line-height: 1.4; color: #15231F">English, Hausa</span>
+<span style="font-size: 15px; line-height: 1.5; color: #5C6660">Fluent</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 17px; font-weight: 600; line-height: 1.4; color: #15231F">Tangale</span>
+<span style="font-size: 15px; line-height: 1.5; color: #5C6660">Native</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 17px; font-weight: 600; line-height: 1.4; color: #15231F">Electronic medical records</span>
+<span style="font-size: 15px; line-height: 1.5; color: #5C6660">Clinical documentation systems, data entry and reporting tools, Excel, Word, PowerPoint</span>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+</main>
+
+<section id="contact" aria-labelledby="contact-h" style="background: var(--accent); color: #FFFFFF; padding-block: clamp(72px, 9vw, 120px)">
+<div class="wrap" style="width: 100%; max-width: 1264px; margin: 0 auto; padding-inline: 32px; box-sizing: border-box; display: flex; flex-direction: column; align-items: flex-start">
+<p style="margin: 0 0 24px; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-weight: 500; font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase; color: #FFFFFF">06 Contact</p>
+<h2 id="contact-h" style="margin: 0 0 24px; max-width: 900px; font-family: 'Bricolage Grotesque', 'Arial Narrow', sans-serif; font-weight: 700; font-size: clamp(36px, 5vw, 68px); line-height: 1.02; letter-spacing: -0.03em; color: #FFFFFF; text-wrap: balance">Hiring for a clinical or humanitarian health role? Let’s talk.</h2>
+<p style="margin: 0 0 40px; max-width: 620px; font-size: 20px; line-height: 1.55; color: #FFFFFF; text-wrap: pretty">I’m currently based in Abuja, Nigeria. Write to me directly to talk about a position or to ask for my full CV. I’m happy to share references on request.</p>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 28px">
+<a href="mailto:tinanimrod28@gmail.com?subject=Opportunity%20for%20Dr.%20Mahlon" style="display: inline-flex; align-items: center; gap: 10px; min-height: 56px; padding: 0 28px; box-sizing: border-box; border-radius: 4px; background: #FFFFFF; color: #15231F; text-decoration: none; font-weight: 600; font-size: 17px">Email me <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></a>
+<a href="mailto:tinanimrod28@gmail.com" style="display: inline-flex; align-items: center; min-height: 56px; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 16px; color: #FFFFFF; text-underline-offset: 6px; text-decoration-thickness: 1px; overflow-wrap: anywhere">tinanimrod28@gmail.com</a>
+</div>
+</div>
+</section>
+
+<footer style="background: #15231F; color: #A9B5AE">
+<div style="width: 100%; max-width: 1264px; margin: 0 auto; padding: 32px; box-sizing: border-box; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 32px; font-size: 14px">
+<span>© 2026 Dr. Tina Nimrod Mahlon</span>
+<span>Portrait by Stanley Mshelia Photography</span>
+</div>
+</footer>
+
+</div>
+<script>
+(function () {
+  var root = document.querySelector('[data-root]');
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // 1. Count-up: numbers tick from 0 the first time the stats row is 40% in view.
+  var stats = document.querySelector('[data-stats]');
+  if (stats && !reduce && 'IntersectionObserver' in window) {
+    var nums = stats.querySelectorAll('[data-count]');
+    var io = new IntersectionObserver(function (entries) {
+      if (!entries.some(function (e) { return e.isIntersecting; })) return;
+      io.disconnect();
+      var start = null;
+      function step(ts) {
+        if (start === null) start = ts;
+        var t = Math.min(1, (ts - start) / 1400);
+        var p = 1 - Math.pow(1 - t, 3);
+        nums.forEach(function (n) {
+          n.textContent = Math.round(Number(n.dataset.count) * p) + (n.dataset.suffix || '');
+        });
+        if (t < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }, { threshold: 0.4 });
+    io.observe(stats);
+  }
+
+  // 2. Scroll-linked motion. CSS decides where it is used (see the mobile media queries):
+  //    --vein-p grows the vein, .is-reached wakes each role's node, .is-active lights the card in focus.
+  if (!root || reduce) return;
+  var list = root.querySelector('.exp-list');
+  var items = root.querySelectorAll('.exp-item');
+  var cards = root.querySelectorAll('.pcard');
+  var ticking = false;
+  root.classList.add('js-motion');
+  function update() {
+    ticking = false;
+    var vh = window.innerHeight || document.documentElement.clientHeight;
+    var line = vh * 0.72;
+    if (list) {
+      var r = list.getBoundingClientRect();
+      var p = r.height ? Math.max(0, Math.min(1, (line - r.top) / r.height)) : 1;
+      list.style.setProperty('--vein-p', p.toFixed(4));
+    }
+    items.forEach(function (it) {
+      it.classList.toggle('is-reached', it.getBoundingClientRect().top + 52 < line);
+    });
+    var mid = vh / 2, best = -1, bestD = 1e9;
+    cards.forEach(function (card, j) {
+      var c = card.getBoundingClientRect();
+      var d = Math.abs((c.top + c.bottom) / 2 - mid);
+      if (c.bottom > 0 && c.top < vh && d < bestD) { bestD = d; best = j; }
+    });
+    cards.forEach(function (card, k) {
+      card.classList.toggle('is-active', k === best && bestD < vh * 0.3);
+    });
+  }
+  function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  update();
+})();
+</script>
+</body>
+</html>

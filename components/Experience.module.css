@@ -1,0 +1,330 @@
+.section {
+  background: var(--sand);
+  color: var(--text);
+}
+
+.list {
+  position: relative;
+}
+
+/* ---------- Vein ---------- */
+
+.vein {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  /* Gutter centre is at 25% + 41px of the list width; the vessel sits at x = 88 in the SVG. */
+  left: calc(25% - 47px);
+  width: 120px;
+  overflow: hidden;
+  pointer-events: none;
+  color: var(--accent);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 48px, #000 calc(100% - 96px), transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 48px, #000 calc(100% - 96px), transparent 100%);
+}
+
+.veinSvg {
+  display: block;
+  max-width: none;
+}
+
+.veinSvg path {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+}
+
+.branch {
+  stroke-width: 1.4;
+  opacity: 0.4;
+  animation: breathe 4s ease-in-out infinite alternate;
+}
+
+.branchMobile {
+  display: none;
+  stroke-width: 1.4;
+  opacity: 0.45;
+}
+
+.vessel {
+  stroke-width: 2.5;
+  opacity: 0.3;
+}
+
+.flow {
+  stroke-width: 3;
+  stroke-dasharray: 70 330;
+  animation: flow 3.6s linear infinite;
+}
+
+.cells {
+  stroke-width: 2;
+  opacity: 0.7;
+  stroke-dasharray: 6 194;
+  animation: cells 1.8s linear infinite;
+}
+
+/* ---------- Roles ---------- */
+
+.item {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px var(--split-gap);
+  padding-block: 40px;
+  border-top: 1px solid var(--line);
+}
+
+.first {
+  border-top-color: var(--line-strong);
+}
+
+.item:last-child {
+  padding-bottom: 0;
+}
+
+.meta {
+  flex: 1 1 220px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.dates {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  color: var(--text);
+}
+
+.place {
+  font-size: 15px;
+  color: var(--text-muted);
+}
+
+.tag {
+  margin-top: 8px;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  background: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--on-accent);
+}
+
+/* Node: twig from the vessel to a dot beside the role title. */
+.twig {
+  position: absolute;
+  left: calc(25% + 35px);
+  top: 52px;
+  display: flex;
+  align-items: center;
+  width: 30px;
+  height: 10px;
+  color: var(--accent);
+}
+
+.twigLine {
+  flex: 1;
+  height: 2px;
+  background: currentColor;
+  opacity: 0.5;
+}
+
+.twigDot {
+  position: relative;
+  flex: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  animation: ping 2.4s ease-out infinite;
+}
+
+.content {
+  flex: 3 1 560px;
+  min-width: 0;
+}
+
+.title {
+  margin: 0 0 4px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.org {
+  margin: 0 0 16px;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text-body);
+}
+
+.summary {
+  margin: 0 0 20px;
+  max-width: 720px;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+.highlights {
+  list-style: none;
+  margin: 0 0 24px;
+  padding: 0;
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.highlights li {
+  display: flex;
+  gap: 14px;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--text-body);
+}
+
+.dash {
+  flex: none;
+  color: var(--dash);
+}
+
+.pills {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pills li {
+  padding: 5px 12px;
+  border: 1px solid var(--pill-border);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-body);
+}
+
+@keyframes flow {
+  to {
+    stroke-dashoffset: -400;
+  }
+}
+
+@keyframes cells {
+  to {
+    stroke-dashoffset: -200;
+  }
+}
+
+@keyframes breathe {
+  from {
+    opacity: 0.2;
+  }
+  to {
+    opacity: 0.55;
+  }
+}
+
+@keyframes ping {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  70%,
+  100% {
+    transform: scale(2.8);
+    opacity: 0;
+  }
+}
+
+/* ---------- Phone and tablet: the vein becomes the timeline spine ---------- */
+
+@media (max-width: 920px) {
+  .item {
+    padding-left: 44px;
+    gap: 12px 0;
+  }
+
+  .meta {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 14px;
+  }
+
+  .tag {
+    margin-top: 0;
+  }
+
+  .vein {
+    left: 0;
+    width: 44px;
+  }
+
+  .veinSvg {
+    margin-left: -74px;
+  }
+
+  .branch {
+    display: none;
+  }
+
+  .branchMobile {
+    display: block;
+  }
+
+  .twig {
+    left: 8px;
+    top: 46px;
+    width: 28px;
+  }
+
+  /* Scroll-linked growth, only when MotionRoot is running. */
+  :global(.js-motion) .vein {
+    clip-path: inset(0 0 calc((1 - var(--vein-p, 1)) * 100%) 0);
+  }
+
+  :global(.js-motion) .twig {
+    opacity: 0.25;
+    transition: opacity 0.4s ease;
+  }
+
+  :global(.js-motion) .item:not(:global(.is-reached)) .ring {
+    animation: none;
+    opacity: 0;
+  }
+
+  :global(.js-motion) .item:global(.is-reached) .twig {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .veinSvg path,
+  .ring {
+    animation: none;
+  }
+
+  .twig {
+    transition: none;
+  }
+}

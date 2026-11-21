@@ -1,0 +1,65 @@
+/* Design tokens. Copy into app/globals.css (or import it) and reference the variables everywhere.
+   Do not introduce colours, fonts or radii that are not listed here. */
+
+:root {
+  /* Surfaces */
+  --ink: #15231f;          /* dark sections: hero, areas of practice, footer */
+  --ink-panel: #1e2e29;    /* cards and the portrait placeholder on dark */
+  --cream: #f8f7f1;        /* default light surface: profile, research */
+  --sand: #f2eae1;         /* alternate light band: experience, training */
+
+  /* Text on light */
+  --text: #15231f;         /* headings, strong text, strong rules */
+  --text-body: #2e3b36;    /* paragraphs, list items, pill text */
+  --text-muted: #5c6660;   /* places, captions, small labels (passes 4.5:1 on cream and sand) */
+
+  /* Text on dark */
+  --on-dark-strong: #fffefa;  /* headings */
+  --on-dark: #f6f4ee;         /* statement, facts values */
+  --on-dark-nav: #dedcd3;     /* nav links */
+  --on-dark-body: #c2cac4;    /* paragraphs */
+  --on-dark-muted: #a9b5ae;   /* mono labels, captions */
+
+  /* Lines */
+  --line: #d8d2c7;            /* hairlines between roles */
+  --line-strong: #15231f;     /* rule above the first role, stats and training columns */
+  --pill-border: #c9bfb2;
+  --dash: #8a9a8d;            /* the "—" list marker (decorative) */
+  --card-border: rgba(246, 244, 238, 0.14);
+
+  /* Accent: blood red. It appears only on things that pulse or flow, and on the one call to action. */
+  --accent: #b3202e;          /* fills with white text, text and graphics on light surfaces */
+  --accent-bright: #e5484d;   /* thin lines on dark surfaces only (heartbeat sweep, card hover) */
+  --on-accent: #ffffff;
+
+  /* Map */
+  --map-land: #e8dfd3;
+  --map-stroke: #cdbfaf;
+
+  /* Type families (wire these to next/font variables) */
+  --font-display: "Bricolage Grotesque", "Arial Narrow", sans-serif;
+  --font-body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+
+  /* Layout */
+  --page-max: 1264px;         /* container max-width including side padding (1200px of content) */
+  --page-pad: 32px;           /* 20px at <= 560px */
+  --split-gap: 64px;          /* gap between the label column and the content column */
+  --section-pad: clamp(64px, 8vw, 104px);
+  --section-pad-contact: clamp(72px, 9vw, 120px);
+
+  /* Radii */
+  --radius-sm: 4px;           /* buttons, "Current role" tag */
+  --radius-md: 6px;           /* portrait, cards */
+  --radius-pill: 999px;
+}
+
+@media (max-width: 560px) {
+  :root {
+    --page-pad: 20px;
+  }
+}
+
+/* Breakpoints (not expressible as variables in media queries):
+   920px  two-column sections stack; the vein becomes a left-edge spine; scroll-linked motion switches on
+   560px  page padding drops to 20px; the hero facts strip becomes two columns */
