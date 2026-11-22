@@ -20,9 +20,16 @@ export const nav = [
   { label: "Profile", href: "#profile" },
   { label: "Experience", href: "#experience" },
   { label: "Areas of practice", href: "#practice" },
+  { label: "Research", href: "#research" },
   { label: "Training", href: "#training" },
   { label: "Contact", href: "#contact" },
 ] as const;
+
+/** Phone menu (≤ 920px): button labels for the slim sticky header. */
+export const menu = {
+  open: "Menu",
+  close: "Close",
+} as const;
 
 export const hero = {
   eyebrow: "Medical doctor · Abuja, Nigeria",
@@ -216,9 +223,48 @@ export const practice = {
 export const research = {
   number: "04",
   label: "Research",
-  title: "Assessment of serum zinc levels in children under 12 months, with and without diarrhoea.",
-  note: "I carried out this study at the University of Maiduguri Teaching Hospital and the State Specialist Hospital, Borno State.",
-} as const;
+  headline: "Half the infants we tested were short of zinc.",
+  formalTitle:
+    "Assessment of serum zinc status among infants less than twelve months with and without diarrhoea in University of Maiduguri Teaching Hospital and State Specialist Hospital, Borno State.",
+  intro:
+    "Diarrhoeal disease remains a leading cause of death in infants, and zinc is part of how the body resists it. In my final year of medical school, four classmates and I measured serum zinc in 246 infants under twelve months at two hospitals in Maiduguri, with and without diarrhoea.",
+  // Figures for the dot field. Use these exactly; add no other statistics.
+  // 116 and 130 are column totals from the report's Table 5: confirm with Dr. Mahlon.
+  stat: {
+    low: 123,
+    total: 246,
+    of: "of",
+    line: "infants had low serum zinc (below 63.8 µg/dl).",
+  },
+  views: {
+    label: "Choose how to show the infants",
+    all: "All infants",
+    groups: "With and without diarrhoea",
+  },
+  groups: [
+    { low: 67, total: 116, caption: "With diarrhoea: 67 of 116 low" },
+    { low: 56, total: 130, caption: "Without diarrhoea: 56 of 130 low" },
+  ],
+  /** Screen-reader description of the dot field, per view. */
+  figureLabels: {
+    all: "123 of 246 infants had low serum zinc.",
+    groups:
+      "With diarrhoea, 67 of 116 infants had low serum zinc. Without diarrhoea, 56 of 130 infants had low serum zinc.",
+  },
+  factorsLabel: "Among infants with diarrhoea, low zinc was linked with:",
+  factors: ["Age 8–10 months", "Not exclusively breastfed", "Underweight", "Stunting"],
+  takeaway:
+    "What we recommended: help caregivers recognise zinc-rich foods and work them into their infants’ diets.",
+  credits:
+    "Final-year MBBS research project · Department of Community Medicine, University of Maiduguri · Data collected March–April 2023, submitted October 2023 · Supervised by Prof. S. J. Yahaya · Approved by the UMTH Research and Ethics Committee.",
+  /** Co-authors, named only with their permission. Credits show "With …" only when this has names. */
+  coauthors: [] as string[],
+  coauthorsPrefix: "With",
+  reportLink: {
+    label: "Request the full report",
+    subject: "Request: serum zinc study report",
+  },
+};
 
 export const training = {
   number: "05",
@@ -268,12 +314,28 @@ export const training = {
 export const contact = {
   number: "06",
   label: "Contact",
-  heading: "Hiring for a clinical or humanitarian health role? Let’s talk.",
-  body: "I’m currently based in Abuja, Nigeria. Write to me directly to talk about a position or to ask for my full CV. I’m happy to share references on request.",
+  heading: "Have a role, a project or a question? Let’s talk.",
+  body: "I’m based in Abuja, Nigeria, and glad to hear from employers, programme teams, researchers and anyone working to make care reach further. Write to me directly; I’m happy to share my full CV and references on request.",
+  reasonsLabel: "What is it about?",
+  reasons: [
+    { label: "A role", subject: "A role for Dr. Mahlon" },
+    { label: "A collaboration", subject: "Collaboration with Dr. Mahlon" },
+    { label: "Research", subject: "Research enquiry" },
+    { label: "An outreach or talk", subject: "Outreach or speaking invitation" },
+    { label: "Something else", subject: "Hello, Dr. Mahlon" },
+  ],
   cta: "Email me",
 } as const;
 
 export const footer = {
   copyright: "© 2026 Dr. Tina Nimrod Mahlon",
   credit: "Portrait by Stanley Mshelia Photography",
+} as const;
+
+// Accessibility-only text (not shown in the design).
+export const a11y = {
+  skipLink: "Skip to content",
+  skillsLabel: "Skills used",
+  primaryNav: "Primary",
+  menuNav: "Sections",
 } as const;

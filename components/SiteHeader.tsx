@@ -1,4 +1,4 @@
-import { a11y, contact, experience, hero, menu, nav, practice, profile, site, training } from "@/content/site";
+import { a11y, contact, experience, hero, menu, nav, practice, profile, research, site, training } from "@/content/site";
 import { mailtoWithSubject } from "@/lib/mailto";
 import { MobileMenu } from "./MobileMenu";
 import l from "./layout.module.css";
@@ -9,6 +9,7 @@ const SECTION_NUMBERS: Record<string, string> = {
   "#profile": profile.number,
   "#experience": experience.number,
   "#practice": practice.number,
+  "#research": research.number,
   "#training": training.number,
   "#contact": contact.number,
 };

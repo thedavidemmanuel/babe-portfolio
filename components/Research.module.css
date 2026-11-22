@@ -3,18 +3,79 @@
   color: var(--text);
 }
 
-.title {
-  margin: 0 0 20px;
+.headline {
+  margin: 0 0 12px;
   max-width: 780px;
   font-weight: 600;
   color: var(--text);
-  text-wrap: pretty;
 }
 
-.note {
+.formal {
+  margin: 0 0 24px;
+  max-width: 700px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.intro {
   margin: 0;
   max-width: 700px;
-  font-size: 17px;
-  line-height: 1.6;
+  font-size: 18px;
+  line-height: 1.65;
   color: var(--text-body);
+}
+
+.factorsLabel {
+  margin: 0 0 12px;
+  max-width: 700px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* Same pill style as the experience skill tags */
+.pills {
+  list-style: none;
+  margin: 0 0 32px;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pills li {
+  padding: 5px 12px;
+  border: 1px solid var(--pill-border);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-body);
+}
+
+.takeaway {
+  margin: 0 0 32px;
+  max-width: 700px;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+.credits {
+  margin: 0 0 8px;
+  max-width: 700px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.reportLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--text);
+  text-underline-offset: 6px;
+  text-decoration-thickness: 1px;
 }

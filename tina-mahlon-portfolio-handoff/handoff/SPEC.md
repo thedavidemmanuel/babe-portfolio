@@ -1,6 +1,6 @@
 # Build spec — Dr. Tina Nimrod Mahlon portfolio
 
-A single-page portfolio for a medical doctor, aimed at prospective employers (hospitals, NGOs, humanitarian health programmes). The design is finished; this document tells you how to rebuild it as a Next.js site.
+A single-page portfolio for a medical doctor, aimed at prospective employers, collaborators, researchers and anyone who wants to reach her. The design is finished; this document tells you how to rebuild it as a Next.js site.
 
 ## 1. What you are given
 
@@ -44,6 +44,8 @@ components/
   Profile.tsx
   NigeriaMap.tsx
   StatCounter.tsx     client component (count-up)
+  ZincField.tsx       client component: research dot field, view switch, wave
+  MobileMenu.tsx      client component: phone menu button + full-screen panel
   Experience.tsx
   ExperienceItem.tsx
   Vein.tsx            the SVG layers
@@ -59,7 +61,7 @@ public/
   portrait.jpg
 ```
 
-Keep everything a Server Component except `StatCounter` and `MotionRoot`.
+Keep everything a Server Component except `StatCounter`, `ZincField`, `MobileMenu` and `MotionRoot`. The count-up logic is shared in `lib/countUp.ts`.
 
 ## 4. Layout system
 
@@ -97,13 +99,13 @@ Use `text-wrap: balance` on headings and `text-wrap: pretty` on paragraphs. Cap 
 Each section lists the desktop layout first, then what changes on a phone. Check every one against the matching screenshot.
 
 ### Header and hero (`--ink`)
-- **Nav:** brand ("Tina Nimrod Mahlon" in display 700 19px, then "MBBS" in mono 13px) on the left, five anchor links on the right (15px, weight 500, 44px tall hit areas). Not sticky.
+- **Nav:** brand ("Tina Nimrod Mahlon" in display 700 19px, then "MBBS" in mono 13px) on the left, six anchor links on the right (Profile, Experience, Areas of practice, Research, Training, Contact; 15px, weight 500, 44px tall hit areas). Not sticky on desktop.
 - **Hero row:** text column `flex: 1.25 1 520px`, portrait `flex: 1 1 380px`, `gap: 48px 64px`, vertically centred, `padding: 40px 0 72px`.
 - **Text column:** eyebrow with a 10px accent square, the name, the statement (max 600px), the intro (max 560px, `--on-dark-body`), then the CTA row.
 - **CTAs:** primary is an accent-filled `mailto:` link with a right arrow, 52px tall, 4px radius. Secondary is an underlined text link to `#experience`. The primary action is the only filled button in the hero.
 - **Portrait:** 4:5 box, 6px radius, `object-fit: cover`. Mono caption underneath with the photo credit.
 - **Heartbeat line** then the **facts strip**: four label/value pairs in an auto-fit grid, minimum column 230px.
-- **Phone:** the nav links become one horizontally scrollable row under the brand (no wrapping, scrollbar hidden). Text stacks above the portrait. The facts strip is two columns at ≤ 560px.
+- **Phone and tablet (≤ 920px):** the nav becomes a slim sticky bar (`--bar-h`, 60px; brand 17px at ≤ 560px) with a "Menu" button (mono label plus two lines that fold into a cross). It opens a full-screen `--ink` panel listing the sections in display 700 (`clamp(28px, 8vw, 40px)`) with their section numbers in mono `--on-dark-muted`, plus the accent "Get in touch" button and the email address. Escape and link taps close it; focus is kept inside while open; the page behind does not scroll. At ≤ 380px the button label is visually hidden; at ≤ 340px "MBBS" is hidden. Sections get `scroll-margin-top: var(--bar-h)`. Text stacks above the portrait. The facts strip is two columns at ≤ 560px.
 
 ### 01 Profile (`--cream`)
 - **Label column:** "01 Profile" (the number in accent), then the map (max 300px) with its caption, 40px below the label.
@@ -124,14 +126,29 @@ Each section lists the desktop layout first, then what changes on a phone. Check
 - **Phone:** one column.
 
 ### 04 Research (`--cream`)
-- Split layout: label, then the study title in the lead style (max 780px) and a one-line note.
+- Split layout: label column "04 Research"; content column, in order:
+  1. **Headline** (h2) in the lead style, weight 600, max 780px.
+  2. **Formal study title**, 15px `--text-muted`, max 700px.
+  3. **Intro**, 18px `--text-body`, max 700px.
+  4. **Dot field** (`ZincField`, max 520px, 40px above and below): the stat "123 of 246" (123 in display 700 56px `--accent`, tabular; "of 246" 28px `--text`; 48px number at ≤ 560px) with its one-line description; then the view switch; then the field. See `ANIMATIONS.md` §7.
+     - **Dots:** one per infant, 8px circles centred in square cells of a grid with 30 columns (20 at ≤ 560px). Resting colour `--line`; a "low zinc" dot is `--accent`.
+     - **View A, "All infants"** (default, server-rendered in its final state): 246 dots, the first 123 red.
+     - **View B, "With and without diarrhoea":** two blocks, each with a 14px caption: 116 dots with the first 67 red, then 130 dots with the first 56 red.
+     - **Switch:** two `<button aria-pressed>` in a `role="group"`, pill style (`--pill-border`, mono 13px, 44px tall); the pressed one is filled `--text` with `--cream` text.
+     - **Accessibility:** the field is `role="img"` with an `aria-label` that states the active view in words (from `content/site.ts`); dots are presentational. The stat and captions are always visible text.
+  5. **Factors label** (16px, 600) and four pills in the experience-tag style.
+  6. **Takeaway**, 18px `--text`.
+  7. **Credits**, 14px `--text-muted`. A "With …" line renders above them only when `research.coauthors` has names.
+  8. **"Request the full report"**: underlined 16px/600 `mailto:` link with the subject from `content/site.ts`. The report itself is never hosted or linked (the scan carries signatures and student numbers).
 
 ### 05 Training (`--sand`)
 - Header row, then four columns in an auto-fit grid (minimum 250px, 40px gap), each with a strong top rule, a mono column title and name/detail pairs.
 - **Phone:** one column.
 
 ### 06 Contact (`--accent`) and footer (`--ink`)
-- Left-aligned: mono label, large heading (max 900px), 20px paragraph (max 620px), then a white `mailto:` button (56px tall, ink text, right arrow) and the email address as an underlined mono link.
+- Left-aligned: mono label, large heading (max 900px), 20px paragraph (max 620px).
+- **Reason chips:** a mono 13px uppercase label ("What is it about?"), then a wrapping row of five chips, each a `mailto:` link with its own subject (from `content/site.ts`). Chip: 1px white outline, white 15px/500 text, pill radius, 44px tall, 18px side padding, 10px gap; on hover and focus it fills white with `--text`. No form and no backend.
+- Then the white `mailto:` button (56px tall, ink text, right arrow) and the email address as an underlined mono link, as before. The hero "Get in touch" button is unchanged.
 - **Footer:** copyright on the left, portrait credit on the right, 14px, `--on-dark-muted`.
 
 ## 7. Accessibility and quality bar
@@ -151,9 +168,11 @@ Each section lists the desktop layout first, then what changes on a phone. Check
 - [ ] At 390px each section matches `reference/screenshots/mobile/`.
 - [ ] At 820px the layout is the stacked (phone) variant with the vein on the left edge.
 - [ ] No horizontal scroll at 320px, 390px, 820px or 1440px.
-- [ ] All six animations behave as in `reference/index.html` on desktop and on a touch device.
+- [ ] All seven animations behave as in `reference/index.html` on desktop and on a touch device.
 - [ ] With reduced motion on, nothing moves and nothing is hidden.
 - [ ] All copy comes from `content/site.ts` and matches `content.ts` in this package word for word.
+- [ ] Research dot counts are exact: 246 total and 123 red in view A; 67 of 116 and 56 of 130 in view B.
+- [ ] The view switch and every contact chip are keyboard-reachable and show the focus style.
 - [ ] `next build` passes with no type or lint errors.
 
 ## 9. Out of scope
@@ -170,3 +189,6 @@ Build with the copy as written. These are open and may change, so keep them easy
 4. **M3 Clinic and Maternity location.** Written as "Lugbe, Abuja" from a spoken note.
 5. **Phone number and referees.** Deliberately left off the public page.
 6. **Domain name.** Not chosen yet.
+7. **Research group sizes.** The report gives 67 and 56 as shares of all 246 infants; 116 (with diarrhoea) and 130 (without) are column totals from its Table 5. Confirm them. One table in the report totals the diarrhoea group at 106, so the site keeps to consistent figures and leaves out p-values.
+8. **Co-authors.** It was a five-student project. Ask the co-authors before naming them; `research.coauthors` is empty until then.
+9. **Research headline and takeaway.** Drafted in her voice; she should approve them.

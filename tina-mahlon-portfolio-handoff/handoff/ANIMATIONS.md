@@ -1,6 +1,6 @@
 # Animations — desktop, mobile and reduced motion
 
-There are six animations. Red is reserved for them: it marks things that pulse or flow. Every one is CSS (keyframes or transitions); JavaScript only sets a few classes and one CSS variable.
+There are seven animations. Red is reserved for them: it marks things that pulse or flow. Every one is CSS (keyframes or transitions); JavaScript only sets a few classes and one CSS variable.
 
 Watch them in `reference/index.html` before building. The CSS in that file's `<style>` block has the exact keyframes; the values below are copied from it.
 
@@ -126,7 +126,18 @@ The static path is 7500px tall. Five roles need about 5,000px at 390px wide and 
 
 - `html { scroll-behavior: smooth }` for the anchor links (off under reduced motion).
 - Links dim to 78% opacity on hover.
+- **Contact chips** fill white with `--text` on hover and focus over **0.2s ease** (no opacity dim).
+- **Phone menu (≤ 920px):** the panel fades in over **0.25s ease**; its links rise 8px and fade in over **0.3s ease**, staggered **40ms** each after a **60ms** delay; the button's two lines fold into a cross over **0.25s ease**. All instant under reduced motion.
+
+## 7. Research dot field
+
+One dot per infant (see `SPEC.md`, 04 Research). Red marks a low-zinc infant, so the dots join the vein and the map in the "pulse" language.
+
+- **Entrance:** server-render view A with its 123 dots red, so the section is correct without JavaScript. When motion is allowed (and `IntersectionObserver` exists), `ZincField` sets `data-wave="armed"` on the field, which shows those dots in `--line`. The first time the field is **40%** in view it sets `data-wave="playing"`: each red dot's colour transitions over **0.3s ease** with a delay of **index × 6ms**, so red sweeps through the dots in order. At the same moment "123" counts up from 0 with the shared count-up (ease-out cubic) over **123 × 6 + 300 = 1038ms**, so the wave and the number finish together. Runs once.
+- **Switching views:** the two views share one grid cell and cross-fade over **0.25s ease** (the hidden one also gets `visibility: hidden` after the fade). Dots never fly between positions. Switching does not replay the wave or the count.
+- **Mobile:** identical; the grid drops from 30 to 20 columns at ≤ 560px.
+- **Reduced motion:** final state immediately: no wave, no count, no cross-fade.
 
 ## Reduced-motion summary
 
-Under `@media (prefers-reduced-motion: reduce)`: no keyframe animation runs, the heartbeat line is shown fully drawn, the sweep is hidden, transitions are removed, and `MotionRoot` and the count-up do not run. Nothing is hidden or left half-revealed.
+Under `@media (prefers-reduced-motion: reduce)`: no keyframe animation runs, the heartbeat line is shown fully drawn, the sweep is hidden, transitions are removed, and `MotionRoot`, the count-ups and the dot-field wave do not run. Nothing is hidden or left half-revealed.

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { onceInView, prefersReducedMotion, runCountUp } from "@/lib/countUp";
 import styles from "./StatCounter.module.css";
 
 type Stat = { readonly value: number; readonly suffix: string; readonly text: string };
@@ -13,36 +14,15 @@ export function StatCounter({ stats }: { stats: readonly Stat[] }) {
 
   useEffect(() => {
     const root = ref.current;
-    if (!root) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    if (!("IntersectionObserver" in window)) return;
-
+    if (!root || prefersReducedMotion()) return;
     const nums = Array.from(root.querySelectorAll<HTMLElement>("[data-count]"));
-    let frame = 0;
-
-    const io = new IntersectionObserver(
-      (entries) => {
-        if (!entries.some((e) => e.isIntersecting)) return;
-        io.disconnect();
-        let start: number | null = null;
-        const step = (ts: number) => {
-          if (start === null) start = ts;
-          const t = Math.min(1, (ts - start) / DURATION);
-          const p = 1 - Math.pow(1 - t, 3);
-          nums.forEach((n) => {
-            n.textContent = `${Math.round(Number(n.dataset.count) * p)}${n.dataset.suffix ?? ""}`;
-          });
-          if (t < 1) frame = requestAnimationFrame(step);
-        };
-        frame = requestAnimationFrame(step);
-      },
-      { threshold: 0.4 },
-    );
-    io.observe(root);
-
+    let cancel = () => {};
+    const disconnect = onceInView(root, 0.4, () => {
+      cancel = runCountUp(nums, DURATION);
+    });
     return () => {
-      io.disconnect();
-      if (frame) cancelAnimationFrame(frame);
+      disconnect();
+      cancel();
     };
   }, []);
 

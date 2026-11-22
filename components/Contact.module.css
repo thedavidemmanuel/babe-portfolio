@@ -31,6 +31,47 @@
   line-height: 1.55;
 }
 
+.reasonsLabel {
+  margin: 0 0 12px;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.reasons {
+  list-style: none;
+  margin: 0 0 40px;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 18px;
+  border: 1px solid var(--on-accent);
+  border-radius: var(--radius-pill);
+  color: var(--on-accent);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.chip:hover,
+.chip:focus-visible {
+  opacity: 1;
+  background: var(--on-accent);
+  color: var(--text);
+}
+
 .actions {
   display: flex;
   flex-wrap: wrap;
@@ -63,4 +104,10 @@
   text-underline-offset: 6px;
   text-decoration-thickness: 1px;
   overflow-wrap: anywhere;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chip {
+    transition: none;
+  }
 }
