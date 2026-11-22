@@ -149,15 +149,38 @@
   transition-delay: calc(var(--n, 0) * 6ms);
 }
 
+.short {
+  display: none;
+}
+
+/* Phones: denser grid (same 8px dots), groups stay side by side, short switch labels. */
 @media (max-width: 560px) {
-  .grid,
-  .viewGroups .grid {
-    --cols: 20;
+  .grid {
+    --cols: 25;
   }
 
   .viewGroups {
-    grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 0 16px;
+  }
+
+  .viewGroups .grid {
+    --cols: 12;
+  }
+
+  .caption {
+    font-size: 13px;
+  }
+
+  .long {
+    display: none;
+  }
+
+  .short {
+    display: inline;
+  }
+
+  .top {
+    margin-bottom: 16px;
   }
 
   .statNum {

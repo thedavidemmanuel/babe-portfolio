@@ -99,7 +99,7 @@ Use `text-wrap: balance` on headings and `text-wrap: pretty` on paragraphs. Cap 
 Each section lists the desktop layout first, then what changes on a phone. Check every one against the matching screenshot.
 
 ### Header and hero (`--ink`)
-- **Nav:** brand ("Tina Nimrod Mahlon" in display 700 19px, then "MBBS" in mono 13px) on the left, six anchor links on the right (Profile, Experience, Areas of practice, Research, Training, Contact; 15px, weight 500, 44px tall hit areas). Not sticky on desktop.
+- **Nav:** brand ("Tina Nimrod Mahlon" in display 700 19px, then "MBBS" in mono 13px) on the left, six anchor links on the right (Profile, Experience, Areas of practice, Research, Training, Contact; 15px, weight 500, 44px tall hit areas). **Sticky at every width** (`--bar-h`: 68px on desktop with 12px vertical padding, 60px at ≤ 920px); sections get `scroll-margin-top: var(--bar-h)`.
 - **Hero row:** text column `flex: 1.25 1 520px`, portrait `flex: 1 1 380px`, `gap: 48px 64px`, vertically centred, `padding: 40px 0 72px`.
 - **Text column:** eyebrow with a 10px accent square, the name, the statement (max 600px), the intro (max 560px, `--on-dark-body`), then the CTA row.
 - **CTAs:** primary is an accent-filled "Say hello" link to `#contact` (not `mailto:`; the contact section does the emailing) with a right arrow, 52px tall, 4px radius. Secondary is an underlined text link to `#experience`. The primary action is the only filled button in the hero.
@@ -126,7 +126,7 @@ Each section lists the desktop layout first, then what changes on a phone. Check
 - **Phone:** one column.
 
 ### 04 Research (`--cream`)
-- **Fits one desktop screen.** Tighter padding than other sections: `padding-block: clamp(56px, 6vw, 80px)`.
+- **Fits one desktop screen** below the sticky header. Tighter padding than other sections: `padding-block: clamp(48px, 4vw, 56px)`.
 - Split layout.
   - **Label column:** "04 Research", then 40px below (like the profile map) the **Study at a glance** slip, styled as a lab request form: `--sand` fill, 1px `--line-strong` border, `--radius-sm`; a mono 12px uppercase heading over a dashed `--pill-border` rule; a `<dl>` of five rows (Test, Patients, Sites, Collected, Supervisor), mono 11px uppercase `--text-muted` terms above 15px `--text` values, dashed `--line` rules between. Under it, the small print (14px `--text-muted`: submission and ethics approval; a "With …" line only when `research.coauthors` has names) and the underlined "Request the full report" `mailto:` link. The report PDF is not hosted (the scan carries classmates' names, student numbers and signatures).
   - **Content column (constant):** mono 13px uppercase `--text-muted` kicker saying it was a final-year MBBS project, then the study title as the h2 (section-heading style).
@@ -137,7 +137,8 @@ Each section lists the desktop layout first, then what changes on a phone. Check
      - **View B, "With and without diarrhoea":** two blocks side by side at 15 columns each (stacked at 20 columns at ≤ 560px), each with a 14px caption: 116 dots with the first 67 red; 130 dots with the first 56 red.
      - **Switch:** two `<button aria-pressed>` in a `role="group"`, pill style (`--pill-border`, mono 13px, 44px tall); pressed is filled `--text` with `--cream` text. Each slide sets the view; pressing the switch overrides it and pauses the slides.
      - **Accessibility:** the field is `role="img"` with an `aria-label` stating the active view in words; dots are presentational. The stat and captions are always visible text.
-- **Phone and tablet (≤ 920px):** order becomes label → kicker, title, slides and dot field → slip and small print (slip rows go back to a 112px term column, then stack again at ≤ 560px).
+- **Phone and tablet (≤ 920px):** order becomes label → kicker, title, slides and dot field → slip and small print. The slip folds into a `<details>` row ("Study at a glance" with the arrow pointing down, turning up when open; works without JavaScript); its rows use a 112px term column, stacking again at ≤ 560px.
+- **Phones (≤ 560px), to stay compact:** dots at 25 columns (same 8px dots); the two groups stay side by side at 12 columns each with 13px captions; the switch uses short labels ("All" / "By diarrhoea") so both buttons fit on one line; slide headlines 23px and body 16px.
 
 ### 05 Training (`--sand`)
 - Header row, then four columns in an auto-fit grid (minimum 250px, 40px gap), each with a strong top rule, a mono column title and name/detail pairs.

@@ -12,7 +12,7 @@ export type ZincFieldProps = {
   total: number;
   of: string;
   line: string;
-  views: { label: string; all: string; groups: string };
+  views: { label: string; all: string; groups: string; allShort: string; groupsShort: string };
   groups: Group[];
   figureLabels: { all: string; groups: string };
 };
@@ -84,10 +84,12 @@ export function ZincField({ low, total, of, line, views, groups, figureLabels, v
 
         <div role="group" aria-label={views.label} className={styles.switch}>
           <button type="button" aria-pressed={view === "all"} onClick={() => onViewChange("all")}>
-            {views.all}
+            <span className={styles.long}>{views.all}</span>
+            <span className={styles.short}>{views.allShort}</span>
           </button>
           <button type="button" aria-pressed={view === "groups"} onClick={() => onViewChange("groups")}>
-            {views.groups}
+            <span className={styles.long}>{views.groups}</span>
+            <span className={styles.short}>{views.groupsShort}</span>
           </button>
         </div>
       </div>

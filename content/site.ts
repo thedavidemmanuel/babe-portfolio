@@ -280,6 +280,9 @@ export const research = {
     label: "Choose how to show the infants",
     all: "All infants",
     groups: "With and without diarrhoea",
+    // Shorter labels on phones (≤ 560px) so both buttons fit on one line.
+    allShort: "All",
+    groupsShort: "By diarrhoea",
   },
   groups: [
     { low: 67, total: 116, caption: "With diarrhoea: 67 of 116 low" },

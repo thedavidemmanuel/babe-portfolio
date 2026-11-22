@@ -147,6 +147,21 @@
   }
 }
 
+@media (max-width: 560px) {
+  .headline {
+    font-size: 23px;
+  }
+
+  .body {
+    font-size: 16px;
+    line-height: 1.55;
+  }
+
+  .controls {
+    margin-top: 4px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .slide,
   .active {

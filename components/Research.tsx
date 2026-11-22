@@ -1,5 +1,6 @@
 import { research } from "@/content/site";
 import { mailtoSubject } from "@/lib/mailto";
+import { Arrow } from "./Arrow";
 import { SectionLabel } from "./SectionLabel";
 import { ResearchStory } from "./ResearchStory";
 import l from "./layout.module.css";
@@ -14,6 +15,16 @@ const listFormat = new Intl.ListFormat("en-GB", { type: "conjunction" });
  */
 export function Research() {
   const { coauthors, slip } = research;
+  const slipRows = (
+    <dl className={styles.slipRows}>
+      {slip.rows.map((row) => (
+        <div key={row.term} className={styles.slipRow}>
+          <dt>{row.term}</dt>
+          <dd>{row.value}</dd>
+        </div>
+      ))}
+    </dl>
+  );
 
   return (
     <section id="research" aria-labelledby="research-h" className={styles.section}>
@@ -22,18 +33,21 @@ export function Research() {
           <SectionLabel number={research.number} label={research.label} className={styles.label} />
 
           <div className={styles.glance}>
-            {/* Study at a glance, styled as a lab request form. */}
-            <div className={styles.slip}>
+            {/* Study at a glance, styled as a lab request form. Always open on desktop;
+                on phones and tablets it folds into a <details> row (works without JavaScript). */}
+            <div className={`${styles.slip} ${styles.slipDesktop}`}>
               <p className={styles.slipHeading}>{slip.heading}</p>
-              <dl className={styles.slipRows}>
-                {slip.rows.map((row) => (
-                  <div key={row.term} className={styles.slipRow}>
-                    <dt>{row.term}</dt>
-                    <dd>{row.value}</dd>
-                  </div>
-                ))}
-              </dl>
+              {slipRows}
             </div>
+            <details className={`${styles.slip} ${styles.slipMobile}`}>
+              <summary className={styles.slipHeading}>
+                {slip.heading}
+                <span aria-hidden="true" className={styles.slipToggle}>
+                  <Arrow />
+                </span>
+              </summary>
+              {slipRows}
+            </details>
 
             {coauthors.length > 0 && (
               <p className={styles.credits}>

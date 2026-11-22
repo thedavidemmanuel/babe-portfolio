@@ -1,4 +1,8 @@
+/* Sticky at every width so the sections are always one tap away. */
 .bar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
   background: var(--ink);
   color: var(--on-dark);
 }
@@ -9,7 +13,8 @@
   align-items: center;
   justify-content: space-between;
   gap: 8px 32px;
-  padding-block: 24px;
+  min-height: var(--bar-h);
+  padding-block: 12px;
 }
 
 .brand {
@@ -222,15 +227,8 @@
 }
 
 @media (max-width: 920px) {
-  .bar {
-    position: sticky;
-    top: 0;
-    z-index: 50;
-  }
-
   .inner {
     flex-wrap: nowrap;
-    min-height: var(--bar-h);
     padding-block: 8px;
   }
 

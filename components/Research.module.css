@@ -1,6 +1,6 @@
 /* Tighter than other sections so the whole study fits one desktop screen. */
 .section {
-  padding-block: clamp(56px, 6vw, 80px);
+  padding-block: clamp(48px, 4vw, 56px);
   background: var(--cream);
   color: var(--text);
 }
@@ -95,6 +95,39 @@
   text-decoration-thickness: 1px;
 }
 
+.slipMobile {
+  display: none;
+}
+
+/* Phones and tablets: the slip folds into a tappable row. */
+.slipMobile summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 44px;
+  border-bottom: 0;
+  cursor: pointer;
+  list-style: none;
+}
+
+.slipMobile summary::-webkit-details-marker {
+  display: none;
+}
+
+.slipMobile[open] summary {
+  border-bottom: 1px dashed var(--pill-border);
+}
+
+.slipToggle {
+  display: inline-flex;
+  transform: rotate(90deg);
+  transition: transform 0.25s ease;
+}
+
+.slipMobile[open] .slipToggle {
+  transform: rotate(-90deg);
+}
+
 /* Phone and tablet: label -> title, slides and dots -> slip and credits. */
 @media (max-width: 920px) {
   .aside {
@@ -108,6 +141,14 @@
 
   .main {
     order: 2;
+  }
+
+  .slipDesktop {
+    display: none;
+  }
+
+  .slipMobile {
+    display: block;
   }
 
   .glance {
@@ -131,5 +172,11 @@
   .slipRow {
     grid-template-columns: 1fr;
     gap: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slipToggle {
+    transition: none;
   }
 }
