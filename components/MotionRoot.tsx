@@ -69,5 +69,9 @@ export function MotionRoot({ children }: { children: React.ReactNode }) {
     };
   }, []);
 
-  return <div ref={ref}>{children}</div>;
+  return (
+    <div ref={ref} id="top">
+      {children}
+    </div>
+  );
 }

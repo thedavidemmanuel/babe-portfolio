@@ -1,5 +1,6 @@
 import { a11y } from "@/content/site";
 import { MotionRoot } from "@/components/MotionRoot";
+import { SiteHeader } from "@/components/SiteHeader";
 import { Hero } from "@/components/Hero";
 import { Profile } from "@/components/Profile";
 import { Experience } from "@/components/Experience";
@@ -16,6 +17,7 @@ export default function Home() {
       <a href="#main" className={styles.skip}>
         {a11y.skipLink}
       </a>
+      <SiteHeader />
       <Hero />
       <main id="main" tabIndex={-1} className={styles.main}>
         <Profile />

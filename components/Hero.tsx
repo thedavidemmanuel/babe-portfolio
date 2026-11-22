@@ -2,7 +2,6 @@ import Image from "next/image";
 import { hero } from "@/content/site";
 import { mailtoWithSubject } from "@/lib/mailto";
 import { Arrow } from "./Arrow";
-import { SiteHeader } from "./SiteHeader";
 import { HeartbeatLine } from "./HeartbeatLine";
 import { FactsStrip } from "./FactsStrip";
 import l from "./layout.module.css";
@@ -11,17 +10,15 @@ import portrait from "@/public/portrait.jpg";
 
 export function Hero() {
   return (
-    <header id="top" className={`${styles.header} surface-dark`}>
+    <section aria-labelledby="hero-name" className={`${styles.header} surface-dark`}>
       <div className={l.wrap}>
-        <SiteHeader />
-
         <div className={styles.row}>
           <div className={styles.text}>
             <p className={styles.eyebrow}>
               <span aria-hidden="true" className={styles.square} />
               {hero.eyebrow}
             </p>
-            <h1 className={styles.name}>{hero.title}</h1>
+            <h1 id="hero-name" className={styles.name}>{hero.title}</h1>
             <p className={styles.statement}>{hero.statement}</p>
             <p className={styles.intro}>{hero.intro}</p>
             <div className={styles.ctas}>
@@ -53,6 +50,6 @@ export function Hero() {
         <HeartbeatLine />
         <FactsStrip />
       </div>
-    </header>
+    </section>
   );
 }

@@ -24,6 +24,12 @@ export const nav = [
   { label: "Contact", href: "#contact" },
 ] as const;
 
+/** Phone menu (≤ 920px): button labels for the slim sticky header. */
+export const menu = {
+  open: "Menu",
+  close: "Close",
+} as const;
+
 export const hero = {
   eyebrow: "Medical doctor · Abuja, Nigeria",
   title: "Dr. Tina Nimrod Mahlon",
@@ -282,4 +288,6 @@ export const footer = {
 export const a11y = {
   skipLink: "Skip to content",
   skillsLabel: "Skills used",
+  primaryNav: "Primary",
+  menuNav: "Sections",
 } as const;

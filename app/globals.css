@@ -47,6 +47,7 @@
   --split-gap: 64px;
   --section-pad: clamp(64px, 8vw, 104px);
   --section-pad-contact: clamp(72px, 9vw, 120px);
+  --bar-h: 60px;               /* slim sticky header at <= 920px (added after handoff) */
 
   /* Radii */
   --radius-sm: 4px;
@@ -112,6 +113,17 @@ a:hover {
 
 .surface-dark :focus-visible {
   outline-color: var(--on-accent);
+}
+
+/* Phone menu: lock the page behind the open menu; keep anchors clear of the sticky bar. */
+html.menu-open {
+  overflow: hidden;
+}
+
+@media (max-width: 920px) {
+  section[id] {
+    scroll-margin-top: var(--bar-h);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

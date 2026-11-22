@@ -3,55 +3,6 @@
   color: var(--on-dark);
 }
 
-/* Nav */
-
-.nav {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px 32px;
-  padding-block: 24px;
-}
-
-.brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  min-height: 44px;
-  text-decoration: none;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 19px;
-  letter-spacing: -0.01em;
-  color: var(--on-dark);
-}
-
-.brandPost {
-  font-family: var(--font-mono);
-  font-weight: 400;
-  font-size: 13px;
-  letter-spacing: 0.08em;
-  color: var(--on-dark-muted);
-}
-
-.navLinks {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 4px 28px;
-}
-
-.navLinks a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  text-decoration: none;
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--on-dark-nav);
-}
-
 /* Hero row */
 
 .row {
@@ -179,22 +130,4 @@
   font-size: 13px;
   letter-spacing: 0.04em;
   color: var(--on-dark-muted);
-}
-
-@media (max-width: 920px) {
-  .navLinks {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    width: 100%;
-    gap: 4px 24px;
-    scrollbar-width: none;
-  }
-
-  .navLinks::-webkit-scrollbar {
-    display: none;
-  }
-
-  .navLinks a {
-    flex: none;
-  }
 }
