@@ -1,0 +1,195 @@
+.wrap {
+  max-width: 100%;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 28px;
+  max-width: 100%;
+}
+
+.button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 56px;
+  padding: 0 28px;
+  border-radius: var(--radius-sm);
+  background: var(--on-accent);
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 17px;
+}
+
+/* Both labels share one cell, so the button keeps its width when the label changes. */
+.labels {
+  display: grid;
+  overflow: hidden;
+  padding-block: 4px;
+}
+
+.default,
+.done {
+  grid-area: 1 / 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.done {
+  gap: 8px;
+  opacity: 0;
+  transform: translateY(70%);
+}
+
+.button[data-copied] .default {
+  opacity: 0;
+  transform: translateY(-70%);
+}
+
+.button[data-copied] .done {
+  opacity: 1;
+  transform: none;
+}
+
+/* The little pulse reading: an ECG blip that draws itself in red before "Copied". */
+.blip {
+  flex: none;
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 60;
+  stroke-dashoffset: 60;
+}
+
+.button[data-copied] .blip {
+  animation: blip 0.6s ease-out 0.15s forwards;
+}
+
+/* The address: copies on click, keeps its underlined mono look. */
+.email {
+  display: inline-flex;
+  align-items: center;
+  min-height: 56px;
+  max-width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--on-accent);
+  font-family: var(--font-mono);
+  font-size: 16px;
+  text-align: left;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 1px;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+}
+
+.email:hover {
+  opacity: 0.78;
+}
+
+/* Confirmation under the buttons; space is reserved so nothing jumps. */
+.note {
+  margin: 8px 0 0;
+  min-height: 1.6em;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--on-accent);
+}
+
+.noteText {
+  display: inline-block;
+  animation: rise 0.3s ease-out;
+}
+
+/* Heartbeat on the call to action: two white rings ripple out, lub then dub, then rest (~50 bpm).
+   Settles on hover and focus; off under reduced motion. */
+.button::before,
+.button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  animation: beat 1.2s ease-out infinite;
+}
+
+.button::after {
+  animation-name: beat-echo;
+  animation-delay: 0.25s;
+}
+
+.button:hover::before,
+.button:hover::after,
+.button:focus-visible::before,
+.button:focus-visible::after {
+  animation-play-state: paused;
+  opacity: 0;
+}
+
+@keyframes blip {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes beat {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--on-accent) 55%, transparent);
+  }
+  45%,
+  100% {
+    box-shadow: 0 0 0 16px color-mix(in srgb, var(--on-accent) 0%, transparent);
+  }
+}
+
+@keyframes beat-echo {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--on-accent) 35%, transparent);
+  }
+  35%,
+  100% {
+    box-shadow: 0 0 0 10px color-mix(in srgb, var(--on-accent) 0%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .default,
+  .done {
+    transition: none;
+  }
+
+  .button[data-copied] .blip {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+
+  .noteText,
+  .button::before,
+  .button::after {
+    animation: none;
+  }
+}

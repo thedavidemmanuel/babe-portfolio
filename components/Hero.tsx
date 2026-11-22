@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { hero } from "@/content/site";
-import { mailtoWithSubject } from "@/lib/mailto";
 import { Arrow } from "./Arrow";
 import { HeartbeatLine } from "./HeartbeatLine";
 import { FactsStrip } from "./FactsStrip";
@@ -22,8 +21,8 @@ export function Hero() {
             <p className={styles.statement}>{hero.statement}</p>
             <p className={styles.intro}>{hero.intro}</p>
             <div className={styles.ctas}>
-              <a href={mailtoWithSubject} className={styles.primary}>
-                {hero.primaryCta} <Arrow />
+              <a href={hero.primaryCta.href} className={styles.primary}>
+                {hero.primaryCta.label} <Arrow />
               </a>
               <a href={hero.secondaryCta.href} className={styles.secondary}>
                 {hero.secondaryCta.label}

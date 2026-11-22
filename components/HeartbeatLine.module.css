@@ -48,6 +48,16 @@
   }
 }
 
+/* Footer bookend: line already drawn, sweep starts immediately. */
+.drawn .line {
+  animation: none;
+  stroke-dashoffset: 0;
+}
+
+.drawn .sweep {
+  animation-delay: 0s;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .line {
     animation: none;

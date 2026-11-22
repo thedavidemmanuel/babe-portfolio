@@ -1,6 +1,6 @@
 # Animations — desktop, mobile and reduced motion
 
-There are seven animations (the seventh is the research slides and dot field). Red is reserved for them: it marks things that pulse or flow. Every one is CSS (keyframes or transitions); JavaScript only sets a few classes and one CSS variable.
+There are nine animations (7: research slides and dot field; 8: heartbeat on the contact button; 9: the copy confirmation). Red is reserved for them: it marks things that pulse or flow. Every one is CSS (keyframes or transitions); JavaScript only sets a few classes and one CSS variable.
 
 Watch them in `reference/index.html` before building. The CSS in that file's `<style>` block has the exact keyframes; the values below are copied from it.
 
@@ -126,7 +126,6 @@ The static path is 7500px tall. Five roles need about 5,000px at 390px wide and 
 
 - `html { scroll-behavior: smooth }` for the anchor links (off under reduced motion).
 - Links dim to 78% opacity on hover.
-- **Contact chips** fill white with `--text` on hover and focus over **0.2s ease** (no opacity dim).
 - **Phone menu (≤ 920px):** the panel fades in over **0.25s ease**; its links rise 8px and fade in over **0.3s ease**, staggered **40ms** each after a **60ms** delay; the button's two lines fold into a cross over **0.25s ease**. All instant under reduced motion.
 
 ## 7. Research slides and dot field
@@ -144,6 +143,21 @@ The text changes; the graphic stays. Red marks a low-zinc infant and the slide t
 - **Entrance:** server-render view A with its 123 dots red, so the section is correct without JavaScript. When motion is allowed (and `IntersectionObserver` exists), `ZincField` sets `data-wave="armed"` on the field, which shows those dots in `--line`. The first time the field is **40%** in view it sets `data-wave="playing"`: each red dot's colour transitions over **0.3s ease** with a delay of **index × 6ms**, so red sweeps through the dots in order. At the same moment "123" counts up from 0 with the shared count-up (ease-out cubic) over **123 × 6 + 300 = 1038ms**, so the wave and the number finish together. Runs once.
 - **Switching views:** the two views share one grid cell and cross-fade over **0.25s ease** (the hidden one also gets `visibility: hidden` after the fade). Dots never fly between positions. Switching does not replay the wave or the count.
 - **Reduced motion:** final state immediately: no wave, no count, no cross-fade.
+
+## 8. Heartbeat on "Email me" (contact)
+
+- Two rings drawn with `box-shadow` on the button's `::before` and `::after` (no extra markup), in `--on-accent` mixed toward transparent.
+- **Lub:** ring grows 0 → 16px while fading from 55% to 0, reaching the end at 45% of a **1.2s ease-out infinite** loop.
+- **Dub:** a softer echo, 0 → 10px from 35% to 0, ending at 35% of the loop, delayed **0.25s**. Together: beat, echo, rest, about 50 bpm.
+- Settles (paused and hidden) on hover and focus. **Mobile:** identical. **Reduced motion:** off.
+
+## 9. Copy confirmation (contact)
+
+- Clicking **"Email me"** opens the mail app *and* copies the address; clicking the **address** (a `<button>` styled as the underlined mono link) only copies it. `navigator.clipboard.writeText`, with a hidden-textarea fallback.
+- **On copy:** the button's two labels share one grid cell (so its width never changes). "Email me →" slides up 70% and fades; "Copied" slides in from below, preceded by a 40 × 16px ECG blip in `--accent` that draws itself (`stroke-dashoffset` 60 → 0, **0.6s ease-out**, delay **0.15s**). Label moves are **0.3s ease**.
+- A mono 13px note under the buttons rises in (4px, **0.3s**): "Address copied. Paste it wherever you write from." It is a `role="status"` region, so screen readers announce it. Space for it is reserved, so nothing jumps.
+- Settles back after **2.6s**; a repeat click restarts the trace.
+- **Reduced motion:** labels swap instantly, the blip shows already drawn, the note appears without rising.
 
 ## Reduced-motion summary
 

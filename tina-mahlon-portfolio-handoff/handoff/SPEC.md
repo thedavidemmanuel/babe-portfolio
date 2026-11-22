@@ -102,10 +102,10 @@ Each section lists the desktop layout first, then what changes on a phone. Check
 - **Nav:** brand ("Tina Nimrod Mahlon" in display 700 19px, then "MBBS" in mono 13px) on the left, six anchor links on the right (Profile, Experience, Areas of practice, Research, Training, Contact; 15px, weight 500, 44px tall hit areas). Not sticky on desktop.
 - **Hero row:** text column `flex: 1.25 1 520px`, portrait `flex: 1 1 380px`, `gap: 48px 64px`, vertically centred, `padding: 40px 0 72px`.
 - **Text column:** eyebrow with a 10px accent square, the name, the statement (max 600px), the intro (max 560px, `--on-dark-body`), then the CTA row.
-- **CTAs:** primary is an accent-filled `mailto:` link with a right arrow, 52px tall, 4px radius. Secondary is an underlined text link to `#experience`. The primary action is the only filled button in the hero.
+- **CTAs:** primary is an accent-filled "Say hello" link to `#contact` (not `mailto:`; the contact section does the emailing) with a right arrow, 52px tall, 4px radius. Secondary is an underlined text link to `#experience`. The primary action is the only filled button in the hero.
 - **Portrait:** 4:5 box, 6px radius, `object-fit: cover`. No photo credit (removed at the client's request).
 - **Heartbeat line** then the **facts strip**: four label/value pairs in an auto-fit grid, minimum column 230px.
-- **Phone and tablet (≤ 920px):** the nav becomes a slim sticky bar (`--bar-h`, 60px; brand 17px at ≤ 560px) with a "Menu" button (mono label plus two lines that fold into a cross). It opens a full-screen `--ink` panel listing the sections in display 700 (`clamp(28px, 8vw, 40px)`) with their section numbers in mono `--on-dark-muted`, plus the accent "Get in touch" button and the email address. Escape and link taps close it; focus is kept inside while open; the page behind does not scroll. At ≤ 380px the button label is visually hidden; at ≤ 340px "MBBS" is hidden. Sections get `scroll-margin-top: var(--bar-h)`. Text stacks above the portrait. The facts strip is two columns at ≤ 560px.
+- **Phone and tablet (≤ 920px):** the nav becomes a slim sticky bar (`--bar-h`, 60px; brand 17px at ≤ 560px) with a "Menu" button (mono label plus two lines that fold into a cross). It opens a full-screen `--ink` panel listing the sections in display 700 (`clamp(28px, 8vw, 40px)`) with their section numbers in mono `--on-dark-muted`, plus the accent "Say hello" button (to `#contact`) and the email address. Escape and link taps close it; focus is kept inside while open; the page behind does not scroll. At ≤ 380px the button label is visually hidden; at ≤ 340px "MBBS" is hidden. Sections get `scroll-margin-top: var(--bar-h)`. Text stacks above the portrait. The facts strip is two columns at ≤ 560px.
 
 ### 01 Profile (`--cream`)
 - **Label column:** "01 Profile" (the number in accent), then the map (max 300px) with its caption, 40px below the label.
@@ -145,9 +145,11 @@ Each section lists the desktop layout first, then what changes on a phone. Check
 
 ### 06 Contact (`--accent`) and footer (`--ink`)
 - Left-aligned: mono label, large heading (max 900px), 20px paragraph (max 620px).
-- **Reason chips:** a mono 13px uppercase label ("What is it about?"), then a wrapping row of five chips, each a `mailto:` link with its own subject (from `content/site.ts`). Chip: 1px white outline, white 15px/500 text, pill radius, 44px tall, 18px side padding, 10px gap; on hover and focus it fills white with `--text`. No form and no backend.
-- Then the white `mailto:` button (56px tall, ink text, right arrow) and the email address as an underlined mono link, as before. The hero "Get in touch" button is unchanged.
-- **Footer:** copyright only, 14px, `--on-dark-muted`. No portrait credit.
+- Then the white `mailto:` button (56px tall, ink text, right arrow; it carries a lub-dub heartbeat, see `ANIMATIONS.md` §8) and the email address as an underlined mono button. Both copy the address with a confirmation (§9); "Email me" also opens the mail app. No topic chips or form: one way to write.
+- **Footer** (`--ink`, 40px top padding): a bookend to the hero.
+  - The heartbeat line again, already drawn, with the red sweep starting straight away (`HeartbeatLine drawn`).
+  - A wrapping row (gap 32px 64px): **sign-off** (name in display 700 19px with "MBBS" in mono, then the hero eyebrow in mono 13px uppercase `--on-dark-muted`); **section links** under a mono "Sections" label, 15px/500 `--on-dark-nav`, 44px hit areas, in an auto-fill grid (min 120px); and an **optional details** column (profile links such as LinkedIn, MDCN registration number, an availability line) that renders only for fields filled in `content/site.ts`.
+  - A bottom row over a 1px `--card-border` rule: copyright (14px `--on-dark-muted`) and an underlined "Back to top" link. No portrait credit.
 
 ## 7. Accessibility and quality bar
 
@@ -166,11 +168,11 @@ Each section lists the desktop layout first, then what changes on a phone. Check
 - [ ] At 390px each section matches `reference/screenshots/mobile/`.
 - [ ] At 820px the layout is the stacked (phone) variant with the vein on the left edge.
 - [ ] No horizontal scroll at 320px, 390px, 820px or 1440px.
-- [ ] All seven animations behave as in `reference/index.html` on desktop and on a touch device.
+- [ ] All nine animations behave as in `reference/index.html` on desktop and on a touch device.
 - [ ] With reduced motion on, nothing moves and nothing is hidden.
 - [ ] All copy comes from `content/site.ts` and matches `content.ts` in this package word for word.
 - [ ] Research dot counts are exact: 246 total and 123 red in view A; 67 of 116 and 56 of 130 in view B.
-- [ ] The view switch and every contact chip are keyboard-reachable and show the focus style.
+- [ ] The research view switch and slide controls are keyboard-reachable and show the focus style.
 - [ ] `next build` passes with no type or lint errors.
 
 ## 9. Out of scope
@@ -190,3 +192,4 @@ Build with the copy as written. These are open and may change, so keep them easy
 7. **Research group sizes.** The report gives 67 and 56 as shares of all 246 infants; 116 (with diarrhoea) and 130 (without) are column totals from its Table 5. Confirm them. One table in the report totals the diarrhoea group at 106, so the site keeps to consistent figures and leaves out p-values.
 8. **Co-authors.** It was a five-student project. Ask the co-authors before naming them; `research.coauthors` is empty until then.
 9. **Research kicker and slide wording.** Drafted in her voice; she should approve them.
+10. **Footer details.** LinkedIn profile, MDCN registration number and an availability line are empty until she supplies and approves them.

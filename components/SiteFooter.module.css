@@ -1,16 +1,118 @@
 .footer {
   background: var(--ink);
   color: var(--on-dark-muted);
+  padding-top: 40px;
 }
 
-.inner {
-  width: 100%;
-  max-width: var(--page-max);
-  margin-inline: auto;
-  padding: 32px;
+.grid {
   display: flex;
   flex-wrap: wrap;
+  gap: 32px var(--split-gap);
+  padding-block: 24px 40px;
+}
+
+/* Sign-off: name like the header brand, role and place in the eyebrow style. */
+.signoff {
+  flex: 1 1 260px;
+  min-width: 0;
+}
+
+.name {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 19px;
+  letter-spacing: -0.01em;
+  color: var(--on-dark);
+}
+
+.post {
+  margin-left: 6px;
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: var(--on-dark-muted);
+}
+
+.tagline,
+.heading {
+  margin: 8px 0 0;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--on-dark-muted);
+}
+
+.availability {
+  margin: 16px 0 0;
+  font-size: 15px;
+  color: var(--on-dark-body);
+}
+
+.nav {
+  flex: 2 1 320px;
+  min-width: 0;
+}
+
+.nav .heading {
+  margin: 0 0 4px;
+}
+
+.links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  column-gap: 24px;
+}
+
+.links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--on-dark-nav);
+}
+
+.extras {
+  flex: 1 1 220px;
+  min-width: 0;
+}
+
+.registration {
+  margin: 8px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 15px;
+  color: var(--on-dark);
+}
+
+.registration .heading {
+  margin: 0;
+}
+
+.bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   justify-content: space-between;
-  gap: 8px 32px;
+  gap: 0 32px;
+  padding-block: 8px 16px;
+  border-top: 1px solid var(--card-border);
   font-size: 14px;
+}
+
+.top {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--on-dark-nav);
+  text-underline-offset: 6px;
+  text-decoration-thickness: 1px;
 }

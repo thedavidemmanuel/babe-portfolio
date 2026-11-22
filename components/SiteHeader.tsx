@@ -1,5 +1,4 @@
 import { a11y, contact, experience, hero, menu, nav, practice, profile, research, site, training } from "@/content/site";
-import { mailtoWithSubject } from "@/lib/mailto";
 import { MobileMenu } from "./MobileMenu";
 import l from "./layout.module.css";
 import styles from "./SiteHeader.module.css";
@@ -40,7 +39,7 @@ export function SiteHeader() {
           closeLabel={menu.close}
           navLabel={a11y.menuNav}
           links={nav.map((item) => ({ ...item, number: SECTION_NUMBERS[item.href] ?? "" }))}
-          cta={{ label: hero.primaryCta, href: mailtoWithSubject }}
+          cta={hero.primaryCta}
           email={site.email}
         />
       </div>

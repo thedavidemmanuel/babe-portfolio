@@ -36,8 +36,9 @@ export const hero = {
   statement:
     "I bring emergency, primary and humanitarian care to communities where it is hardest to reach.",
   intro:
-    "I trained at the University of Maiduguri and now work at Royal Orthopedic Hospital, Abuja. Before that I served as medical director of a clinic and maternity in Abuja, and worked in a teaching hospital, a district hospital and an MSF stabilisation centre for severe acute malnutrition across Borno and Gombe States.",
-  primaryCta: "Get in touch",
+    // Draft for Dr. Mahlon to approve.
+    "I trained at the University of Maiduguri. I’m curious about the world and the beauty in it, and passionate about making healthcare accessible, delivered with excellence and empathy.",
+  primaryCta: { label: "Say hello", href: "#contact" },
   secondaryCta: { label: "See my experience", href: "#experience" },
   portraitAlt:
     "Portrait of Dr. Tina Nimrod Mahlon in grey scrubs, smiling over her shoulder with a white coat and red stethoscope",
@@ -349,21 +350,24 @@ export const contact = {
   number: "06",
   label: "Contact",
   heading: "Have a role, a project or a question? Let’s talk.",
-  body: "I’m based in Abuja, Nigeria, and glad to hear from employers, programme teams, researchers and anyone working to make care reach further. Write to me directly; I’m happy to share my full CV and references on request.",
-  reasonsLabel: "What is it about?",
-  reasons: [
-    { label: "A role", subject: "A role for Dr. Mahlon" },
-    { label: "A collaboration", subject: "Collaboration with Dr. Mahlon" },
-    { label: "Research", subject: "Research enquiry" },
-    { label: "An outreach or talk", subject: "Outreach or speaking invitation" },
-    { label: "Something else", subject: "Hello, Dr. Mahlon" },
-  ],
+  body: "I’m glad to hear from employers, programme teams, researchers and anyone working to make care reach further. Write to me directly; I’m happy to share my full CV and references on request.",
   cta: "Email me",
+  // Clicking "Email me" or the address copies the address (and "Email me" still opens the mail app).
+  copied: "Copied",
+  copiedNote: "Address copied. Paste it wherever you write from.",
+  copyAddressLabel: "Copy email address",
 } as const;
 
 export const footer = {
   copyright: "© 2026 Dr. Tina Nimrod Mahlon",
-} as const;
+  backToTop: "Back to top",
+  navLabel: "Footer",
+  sectionsLabel: "Sections",
+  // Optional details. Each one appears in the footer only once it is filled in; confirm with Dr. Mahlon first.
+  profiles: [] as { label: string; href: string }[], // e.g. { label: "LinkedIn", href: "https://www.linkedin.com/in/…" }
+  registration: { label: "MDCN registration", value: "" }, // Medical and Dental Council of Nigeria number
+  availability: "", // e.g. "Open to clinical and humanitarian roles"
+};
 
 // Accessibility-only text (not shown in the design).
 export const a11y = {
