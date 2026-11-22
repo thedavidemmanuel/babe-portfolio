@@ -13,7 +13,6 @@ export const site = {
     description:
       "Medical doctor based in Abuja, Nigeria, with hospital, clinic-leadership and humanitarian field experience across Abuja, Borno and Gombe States.",
   },
-  photoCredit: "Stanley Mshelia Photography",
 } as const;
 
 export const nav = [
@@ -42,7 +41,6 @@ export const hero = {
   secondaryCta: { label: "See my experience", href: "#experience" },
   portraitAlt:
     "Portrait of Dr. Tina Nimrod Mahlon in grey scrubs, smiling over her shoulder with a white coat and red stethoscope",
-  portraitCaption: "Photograph: Stanley Mshelia Photography",
   facts: [
     { label: "Qualification", value: "MBBS, University of Maiduguri, 2024" },
     { label: "Focus", value: "Emergency, primary and humanitarian care" },
@@ -223,11 +221,52 @@ export const practice = {
 export const research = {
   number: "04",
   label: "Research",
-  headline: "Half the infants we tested were short of zinc.",
-  formalTitle:
-    "Assessment of serum zinc status among infants less than twelve months with and without diarrhoea in University of Maiduguri Teaching Hospital and State Specialist Hospital, Borno State.",
-  intro:
-    "Diarrhoeal disease remains a leading cause of death in infants, and zinc is part of how the body resists it. In my final year of medical school, four classmates and I measured serum zinc in 246 infants under twelve months at two hospitals in Maiduguri, with and without diarrhoea.",
+  // Constant header: says what the study is. Drafts for Dr. Mahlon to approve.
+  kicker: "Final-year MBBS research project · University of Maiduguri · 2023",
+  title: "Zinc deficiency and infant health",
+  // Text slides that advance on their own above the dot field. `view` sets which dot view each slide shows.
+  // Wording is drafted for Dr. Mahlon to approve; the figures must match the dot field exactly.
+  slides: [
+    {
+      view: "all",
+      headline: "Half the infants we tested were short of zinc.",
+      body: "With four classmates, I measured serum zinc in 246 infants under 12 months at two hospitals in Maiduguri, with and without diarrhoea.",
+    },
+    {
+      view: "groups",
+      headline: "Low zinc was more common with diarrhoea.",
+      body: "67 of 116 infants with diarrhoea had low serum zinc, against 56 of 130 without.",
+    },
+    {
+      view: "groups",
+      headline: "Age, feeding and growth were linked to it.",
+      body: "Among infants with diarrhoea, low zinc was linked with:",
+      pills: ["Age 8–10 months", "Not exclusively breastfed", "Underweight", "Stunting"],
+    },
+    {
+      view: "all",
+      headline: "The fix starts with caregivers.",
+      body: "We recommended helping caregivers recognise zinc-rich foods and work them into their infants’ diets.",
+    },
+  ] as { view: "all" | "groups"; headline: string; body: string; pills?: string[] }[],
+  slideControls: {
+    label: "Study findings",
+    slide: "Slide",
+    of: "of",
+    pause: "Pause",
+    play: "Play",
+  },
+  // Study at a glance, styled as a lab request form (left column on desktop).
+  slip: {
+    heading: "Study at a glance",
+    rows: [
+      { term: "Test", value: "Serum zinc" },
+      { term: "Patients", value: "246 infants under 12 months" },
+      { term: "Sites", value: "UMTH · State Specialist Hospital" },
+      { term: "Collected", value: "March–April 2023" },
+      { term: "Supervisor", value: "Prof. S. J. Yahaya" },
+    ],
+  },
   // Figures for the dot field. Use these exactly; add no other statistics.
   // 116 and 130 are column totals from the report's Table 5: confirm with Dr. Mahlon.
   stat: {
@@ -251,12 +290,7 @@ export const research = {
     groups:
       "With diarrhoea, 67 of 116 infants had low serum zinc. Without diarrhoea, 56 of 130 infants had low serum zinc.",
   },
-  factorsLabel: "Among infants with diarrhoea, low zinc was linked with:",
-  factors: ["Age 8–10 months", "Not exclusively breastfed", "Underweight", "Stunting"],
-  takeaway:
-    "What we recommended: help caregivers recognise zinc-rich foods and work them into their infants’ diets.",
-  credits:
-    "Final-year MBBS research project · Department of Community Medicine, University of Maiduguri · Data collected March–April 2023, submitted October 2023 · Supervised by Prof. S. J. Yahaya · Approved by the UMTH Research and Ethics Committee.",
+  credits: "Submitted October 2023 · Approved by the UMTH Research and Ethics Committee",
   /** Co-authors, named only with their permission. Credits show "With …" only when this has names. */
   coauthors: [] as string[],
   coauthorsPrefix: "With",
@@ -329,7 +363,6 @@ export const contact = {
 
 export const footer = {
   copyright: "© 2026 Dr. Tina Nimrod Mahlon",
-  credit: "Portrait by Stanley Mshelia Photography",
 } as const;
 
 // Accessibility-only text (not shown in the design).

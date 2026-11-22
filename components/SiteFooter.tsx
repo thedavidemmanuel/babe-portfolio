@@ -6,7 +6,6 @@ export function SiteFooter() {
     <footer className={`${styles.footer} surface-dark`}>
       <div className={styles.inner}>
         <span>{footer.copyright}</span>
-        <span>{footer.credit}</span>
       </div>
     </footer>
   );

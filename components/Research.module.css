@@ -1,69 +1,84 @@
+/* Tighter than other sections so the whole study fits one desktop screen. */
 .section {
+  padding-block: clamp(56px, 6vw, 80px);
   background: var(--cream);
   color: var(--text);
 }
 
-.headline {
+.kicker {
   margin: 0 0 12px;
-  max-width: 780px;
-  font-weight: 600;
-  color: var(--text);
-}
-
-.formal {
-  margin: 0 0 24px;
-  max-width: 700px;
-  font-size: 15px;
+  font-family: var(--font-mono);
+  font-size: 13px;
   line-height: 1.5;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   color: var(--text-muted);
 }
 
-.intro {
-  margin: 0;
-  max-width: 700px;
-  font-size: 18px;
-  line-height: 1.65;
-  color: var(--text-body);
+.title {
+  margin-bottom: 24px;
 }
 
-.factorsLabel {
-  margin: 0 0 12px;
-  max-width: 700px;
-  font-size: 16px;
-  font-weight: 600;
+/* Left column: slip, credits and report link, 40px below the label (like the profile map). */
+.glance {
+  margin-top: 40px;
+}
+
+/* Study at a glance: a lab request form on paper (--sand), mono field names. */
+.slip {
+  margin: 0 0 20px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  background: var(--sand);
+}
+
+.slipHeading {
+  margin: 0;
+  padding: 10px 16px;
+  border-bottom: 1px dashed var(--pill-border);
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.5;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--text);
 }
 
-/* Same pill style as the experience skill tags */
-.pills {
-  list-style: none;
-  margin: 0 0 32px;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+.slipRows {
+  margin: 0;
+  padding: 4px 16px 8px;
 }
 
-.pills li {
-  padding: 5px 12px;
-  border: 1px solid var(--pill-border);
-  border-radius: var(--radius-pill);
+/* Narrow column: term above value. */
+.slipRow {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2px;
+  padding-block: 8px;
+}
+
+.slipRow + .slipRow {
+  border-top: 1px dashed var(--line);
+}
+
+.slipRow dt {
   font-family: var(--font-mono);
-  font-size: 13px;
-  color: var(--text-body);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
 }
 
-.takeaway {
-  margin: 0 0 32px;
-  max-width: 700px;
-  font-size: 18px;
-  line-height: 1.6;
+.slipRow dd {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.45;
   color: var(--text);
 }
 
 .credits {
-  margin: 0 0 8px;
-  max-width: 700px;
+  margin: 0 0 4px;
   font-size: 14px;
   line-height: 1.5;
   color: var(--text-muted);
@@ -78,4 +93,43 @@
   color: var(--text);
   text-underline-offset: 6px;
   text-decoration-thickness: 1px;
+}
+
+/* Phone and tablet: label -> title, slides and dots -> slip and credits. */
+@media (max-width: 920px) {
+  .aside {
+    display: contents;
+  }
+
+  .label {
+    order: 1;
+    width: 100%;
+  }
+
+  .main {
+    order: 2;
+  }
+
+  .glance {
+    order: 3;
+    width: 100%;
+    max-width: 620px;
+    margin-top: 16px;
+  }
+
+  .slipRow {
+    grid-template-columns: 112px 1fr;
+    gap: 16px;
+  }
+
+  .slipRow dt {
+    padding-top: 3px;
+  }
+}
+
+@media (max-width: 560px) {
+  .slipRow {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
 }

@@ -124,10 +124,3 @@
   object-fit: cover;
   object-position: 50% 18%;
 }
-
-.caption {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  letter-spacing: 0.04em;
-  color: var(--on-dark-muted);
-}

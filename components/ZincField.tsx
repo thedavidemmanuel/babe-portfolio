@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { onceInView, prefersReducedMotion, runCountUp } from "@/lib/countUp";
 import styles from "./ZincField.module.css";
 
 type Group = { low: number; total: number; caption: string };
+export type ZincView = "all" | "groups";
 
-type Props = {
+export type ZincFieldProps = {
   low: number;
   total: number;
   of: string;
@@ -16,7 +17,10 @@ type Props = {
   figureLabels: { all: string; groups: string };
 };
 
-type View = "all" | "groups";
+type Props = ZincFieldProps & {
+  view: ZincView;
+  onViewChange: (view: ZincView) => void;
+};
 
 /** Entrance wave: ms between dots, and each dot's colour transition. The count-up lasts as long as the wave. */
 const STAGGER = 6;
@@ -39,9 +43,9 @@ function Dots({ total, low, wave = false }: { total: number; low: number; wave?:
 /**
  * One dot per infant. Server-renders view A in its final state. With motion allowed, the red dots
  * reset to grey, then sweep red as a wave the first time the field is 40% in view, while the number counts up.
+ * The view is controlled by the parent (the research slides), and the switch buttons can change it too.
  */
-export function ZincField({ low, total, of, line, views, groups, figureLabels }: Props) {
-  const [view, setView] = useState<View>("all");
+export function ZincField({ low, total, of, line, views, groups, figureLabels, view, onViewChange }: Props) {
   const fieldRef = useRef<HTMLDivElement>(null);
   const numRef = useRef<HTMLSpanElement>(null);
 
@@ -65,25 +69,27 @@ export function ZincField({ low, total, of, line, views, groups, figureLabels }:
 
   return (
     <div className={styles.figure}>
-      <p className={styles.stat}>
-        <span className={styles.statFigure}>
-          <span ref={numRef} className={styles.statNum} data-count={low}>
-            {low}
-          </span>{" "}
-          <span className={styles.statOf}>
-            {of} {total}
+      <div className={styles.top}>
+        <p className={styles.stat}>
+          <span className={styles.statFigure}>
+            <span ref={numRef} className={styles.statNum} data-count={low}>
+              {low}
+            </span>{" "}
+            <span className={styles.statOf}>
+              {of} {total}
+            </span>
           </span>
-        </span>
-        <span className={styles.statLine}>{line}</span>
-      </p>
+          <span className={styles.statLine}>{line}</span>
+        </p>
 
-      <div role="group" aria-label={views.label} className={styles.switch}>
-        <button type="button" aria-pressed={view === "all"} onClick={() => setView("all")}>
-          {views.all}
-        </button>
-        <button type="button" aria-pressed={view === "groups"} onClick={() => setView("groups")}>
-          {views.groups}
-        </button>
+        <div role="group" aria-label={views.label} className={styles.switch}>
+          <button type="button" aria-pressed={view === "all"} onClick={() => onViewChange("all")}>
+            {views.all}
+          </button>
+          <button type="button" aria-pressed={view === "groups"} onClick={() => onViewChange("groups")}>
+            {views.groups}
+          </button>
+        </div>
       </div>
 
       <div ref={fieldRef} role="img" aria-label={figureLabels[view]} className={styles.field}>

@@ -103,7 +103,7 @@ Each section lists the desktop layout first, then what changes on a phone. Check
 - **Hero row:** text column `flex: 1.25 1 520px`, portrait `flex: 1 1 380px`, `gap: 48px 64px`, vertically centred, `padding: 40px 0 72px`.
 - **Text column:** eyebrow with a 10px accent square, the name, the statement (max 600px), the intro (max 560px, `--on-dark-body`), then the CTA row.
 - **CTAs:** primary is an accent-filled `mailto:` link with a right arrow, 52px tall, 4px radius. Secondary is an underlined text link to `#experience`. The primary action is the only filled button in the hero.
-- **Portrait:** 4:5 box, 6px radius, `object-fit: cover`. Mono caption underneath with the photo credit.
+- **Portrait:** 4:5 box, 6px radius, `object-fit: cover`. No photo credit (removed at the client's request).
 - **Heartbeat line** then the **facts strip**: four label/value pairs in an auto-fit grid, minimum column 230px.
 - **Phone and tablet (≤ 920px):** the nav becomes a slim sticky bar (`--bar-h`, 60px; brand 17px at ≤ 560px) with a "Menu" button (mono label plus two lines that fold into a cross). It opens a full-screen `--ink` panel listing the sections in display 700 (`clamp(28px, 8vw, 40px)`) with their section numbers in mono `--on-dark-muted`, plus the accent "Get in touch" button and the email address. Escape and link taps close it; focus is kept inside while open; the page behind does not scroll. At ≤ 380px the button label is visually hidden; at ≤ 340px "MBBS" is hidden. Sections get `scroll-margin-top: var(--bar-h)`. Text stacks above the portrait. The facts strip is two columns at ≤ 560px.
 
@@ -126,20 +126,18 @@ Each section lists the desktop layout first, then what changes on a phone. Check
 - **Phone:** one column.
 
 ### 04 Research (`--cream`)
-- Split layout: label column "04 Research"; content column, in order:
-  1. **Headline** (h2) in the lead style, weight 600, max 780px.
-  2. **Formal study title**, 15px `--text-muted`, max 700px.
-  3. **Intro**, 18px `--text-body`, max 700px.
-  4. **Dot field** (`ZincField`, max 520px, 40px above and below): the stat "123 of 246" (123 in display 700 56px `--accent`, tabular; "of 246" 28px `--text`; 48px number at ≤ 560px) with its one-line description; then the view switch; then the field. See `ANIMATIONS.md` §7.
-     - **Dots:** one per infant, 8px circles centred in square cells of a grid with 30 columns (20 at ≤ 560px). Resting colour `--line`; a "low zinc" dot is `--accent`.
-     - **View A, "All infants"** (default, server-rendered in its final state): 246 dots, the first 123 red.
-     - **View B, "With and without diarrhoea":** two blocks, each with a 14px caption: 116 dots with the first 67 red, then 130 dots with the first 56 red.
-     - **Switch:** two `<button aria-pressed>` in a `role="group"`, pill style (`--pill-border`, mono 13px, 44px tall); the pressed one is filled `--text` with `--cream` text.
-     - **Accessibility:** the field is `role="img"` with an `aria-label` that states the active view in words (from `content/site.ts`); dots are presentational. The stat and captions are always visible text.
-  5. **Factors label** (16px, 600) and four pills in the experience-tag style.
-  6. **Takeaway**, 18px `--text`.
-  7. **Credits**, 14px `--text-muted`. A "With …" line renders above them only when `research.coauthors` has names.
-  8. **"Request the full report"**: underlined 16px/600 `mailto:` link with the subject from `content/site.ts`. The report itself is never hosted or linked (the scan carries signatures and student numbers).
+- **Fits one desktop screen.** Tighter padding than other sections: `padding-block: clamp(56px, 6vw, 80px)`.
+- Split layout.
+  - **Label column:** "04 Research", then 40px below (like the profile map) the **Study at a glance** slip, styled as a lab request form: `--sand` fill, 1px `--line-strong` border, `--radius-sm`; a mono 12px uppercase heading over a dashed `--pill-border` rule; a `<dl>` of five rows (Test, Patients, Sites, Collected, Supervisor), mono 11px uppercase `--text-muted` terms above 15px `--text` values, dashed `--line` rules between. Under it, the small print (14px `--text-muted`: submission and ethics approval; a "With …" line only when `research.coauthors` has names) and the underlined "Request the full report" `mailto:` link. The report PDF is not hosted (the scan carries classmates' names, student numbers and signatures).
+  - **Content column (constant):** mono 13px uppercase `--text-muted` kicker saying it was a final-year MBBS project, then the study title as the h2 (section-heading style).
+  - **Content column (slides):** four text slides (`ResearchStory`), each a lead-style headline (display 600, `clamp(24px, 2.5vw, 34px)`) and an 18px `--text-body` line; slide 3 adds the four factor pills (experience-tag style). Slides share one grid cell so the area keeps the tallest slide's height. Under them: one 44 × 44px button per slide holding a 3px progress track (`--line`, filled `--accent` for the timer), and a mono uppercase "Pause"/"Play" text button. See `ANIMATIONS.md` §7.
+  - **Content column (constant graphic):** the dot field (`ZincField`). Top row: the stat "123 of 246" (123 in display 700 56px `--accent`, tabular; "of 246" 28px `--text`; 48px at ≤ 560px) with its line, and the view switch beside it (wraps below on narrow screens). Then the field, max 520px:
+     - **Dots:** one per infant, 8px circles centred in square cells; 30 columns (20 at ≤ 560px). Resting `--line`; "low zinc" `--accent`.
+     - **View A, "All infants":** 246 dots, first 123 red. Server-rendered in its final state.
+     - **View B, "With and without diarrhoea":** two blocks side by side at 15 columns each (stacked at 20 columns at ≤ 560px), each with a 14px caption: 116 dots with the first 67 red; 130 dots with the first 56 red.
+     - **Switch:** two `<button aria-pressed>` in a `role="group"`, pill style (`--pill-border`, mono 13px, 44px tall); pressed is filled `--text` with `--cream` text. Each slide sets the view; pressing the switch overrides it and pauses the slides.
+     - **Accessibility:** the field is `role="img"` with an `aria-label` stating the active view in words; dots are presentational. The stat and captions are always visible text.
+- **Phone and tablet (≤ 920px):** order becomes label → kicker, title, slides and dot field → slip and small print (slip rows go back to a 112px term column, then stack again at ≤ 560px).
 
 ### 05 Training (`--sand`)
 - Header row, then four columns in an auto-fit grid (minimum 250px, 40px gap), each with a strong top rule, a mono column title and name/detail pairs.
@@ -149,7 +147,7 @@ Each section lists the desktop layout first, then what changes on a phone. Check
 - Left-aligned: mono label, large heading (max 900px), 20px paragraph (max 620px).
 - **Reason chips:** a mono 13px uppercase label ("What is it about?"), then a wrapping row of five chips, each a `mailto:` link with its own subject (from `content/site.ts`). Chip: 1px white outline, white 15px/500 text, pill radius, 44px tall, 18px side padding, 10px gap; on hover and focus it fills white with `--text`. No form and no backend.
 - Then the white `mailto:` button (56px tall, ink text, right arrow) and the email address as an underlined mono link, as before. The hero "Get in touch" button is unchanged.
-- **Footer:** copyright on the left, portrait credit on the right, 14px, `--on-dark-muted`.
+- **Footer:** copyright only, 14px, `--on-dark-muted`. No portrait credit.
 
 ## 7. Accessibility and quality bar
 
@@ -191,4 +189,4 @@ Build with the copy as written. These are open and may change, so keep them easy
 6. **Domain name.** Not chosen yet.
 7. **Research group sizes.** The report gives 67 and 56 as shares of all 246 infants; 116 (with diarrhoea) and 130 (without) are column totals from its Table 5. Confirm them. One table in the report totals the diarrhoea group at 106, so the site keeps to consistent figures and leaves out p-values.
 8. **Co-authors.** It was a five-student project. Ask the co-authors before naming them; `research.coauthors` is empty until then.
-9. **Research headline and takeaway.** Drafted in her voice; she should approve them.
+9. **Research kicker and slide wording.** Drafted in her voice; she should approve them.

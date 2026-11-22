@@ -1,6 +1,6 @@
 # Animations — desktop, mobile and reduced motion
 
-There are seven animations. Red is reserved for them: it marks things that pulse or flow. Every one is CSS (keyframes or transitions); JavaScript only sets a few classes and one CSS variable.
+There are seven animations (the seventh is the research slides and dot field). Red is reserved for them: it marks things that pulse or flow. Every one is CSS (keyframes or transitions); JavaScript only sets a few classes and one CSS variable.
 
 Watch them in `reference/index.html` before building. The CSS in that file's `<style>` block has the exact keyframes; the values below are copied from it.
 
@@ -129,13 +129,20 @@ The static path is 7500px tall. Five roles need about 5,000px at 390px wide and 
 - **Contact chips** fill white with `--text` on hover and focus over **0.2s ease** (no opacity dim).
 - **Phone menu (≤ 920px):** the panel fades in over **0.25s ease**; its links rise 8px and fade in over **0.3s ease**, staggered **40ms** each after a **60ms** delay; the button's two lines fold into a cross over **0.25s ease**. All instant under reduced motion.
 
-## 7. Research dot field
+## 7. Research slides and dot field
 
-One dot per infant (see `SPEC.md`, 04 Research). Red marks a low-zinc infant, so the dots join the vein and the map in the "pulse" language.
+The text changes; the graphic stays. Red marks a low-zinc infant and the slide timer, so both join the vein and the map in the "pulse" language.
 
+**Slides (`ResearchStory`)**
+- Four slides advance on their own every **5.5s**. The timer is the active progress bar's CSS animation (`transform: scaleX(0 → 1)`, **5.5s linear**); when it ends, the next slide shows (looping to the first). Each slide sets the dot field's view.
+- **Transition:** the outgoing slide fades and moves 24px to the side (the way it came), the incoming one fades in from the other side; **0.45s ease**, incoming delayed **0.1s**. Waiting slides are clipped (`overflow-x: clip`) so they never widen the page.
+- **Plays only when it should:** the timer runs only while the slides are at least 50% on screen, not hovered or focused, and not paused (`animation-play-state: paused` otherwise). "Pause"/"Play" toggles it; clicking a progress bar jumps to that slide; pressing the dot field's view switch pauses it.
+- **Screen readers:** carousel/slide roles; inactive slides are `aria-hidden` and `inert`; the slide area is `aria-live="polite"` only while not auto-playing.
+- **Reduced motion:** never advances on its own, no slide transition, no Pause button; the bars still switch slides.
+
+**Dot field (`ZincField`)**
 - **Entrance:** server-render view A with its 123 dots red, so the section is correct without JavaScript. When motion is allowed (and `IntersectionObserver` exists), `ZincField` sets `data-wave="armed"` on the field, which shows those dots in `--line`. The first time the field is **40%** in view it sets `data-wave="playing"`: each red dot's colour transitions over **0.3s ease** with a delay of **index × 6ms**, so red sweeps through the dots in order. At the same moment "123" counts up from 0 with the shared count-up (ease-out cubic) over **123 × 6 + 300 = 1038ms**, so the wave and the number finish together. Runs once.
 - **Switching views:** the two views share one grid cell and cross-fade over **0.25s ease** (the hidden one also gets `visibility: hidden` after the fade). Dots never fly between positions. Switching does not replay the wave or the count.
-- **Mobile:** identical; the grid drops from 30 to 20 columns at ≤ 560px.
 - **Reduced motion:** final state immediately: no wave, no count, no cross-fade.
 
 ## Reduced-motion summary

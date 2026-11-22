@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Research report scan: contains classmates' names, student numbers and signatures. Do not publish.
+/public/Project.pdf

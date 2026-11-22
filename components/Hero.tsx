@@ -43,7 +43,6 @@ export function Hero() {
                 className={styles.portrait}
               />
             </div>
-            <figcaption className={styles.caption}>{hero.portraitCaption}</figcaption>
           </figure>
         </div>
 

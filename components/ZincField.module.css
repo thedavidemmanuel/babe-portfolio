@@ -1,12 +1,21 @@
 .figure {
-  margin: 40px 0;
-  max-width: 520px;
+  max-width: 780px;
+}
+
+/* Stat and view switch share a row on wide screens. */
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px 24px;
+  margin-bottom: 20px;
 }
 
 /* Stat */
 
 .stat {
-  margin: 0 0 20px;
+  margin: 0;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -43,7 +52,6 @@
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-bottom: 24px;
 }
 
 .switch button {
@@ -72,6 +80,7 @@
 
 .field {
   display: grid;
+  max-width: 520px;
 }
 
 .view {
@@ -87,10 +96,15 @@
     visibility 0s linear 0.25s;
 }
 
+/* Groups side by side, 15 columns each, so both views are about the same height. */
 .viewGroups {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 24px;
+}
+
+.viewGroups .grid {
+  --cols: 15;
 }
 
 .caption {
@@ -104,6 +118,7 @@
   --cols: 30;
   display: grid;
   grid-template-columns: repeat(var(--cols), 1fr);
+  max-width: 520px;
 }
 
 .dot {
@@ -135,8 +150,14 @@
 }
 
 @media (max-width: 560px) {
-  .grid {
+  .grid,
+  .viewGroups .grid {
     --cols: 20;
+  }
+
+  .viewGroups {
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
 
   .statNum {
