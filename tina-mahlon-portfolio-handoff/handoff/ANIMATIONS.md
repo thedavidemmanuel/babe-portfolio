@@ -1,6 +1,6 @@
 # Animations — desktop, mobile and reduced motion
 
-There are nine animations (7: research slides and dot field; 8: heartbeat on the contact button; 9: the copy confirmation). Red is reserved for them: it marks things that pulse or flow. Every one is CSS (keyframes or transitions); JavaScript only sets a few classes and one CSS variable.
+There are nine animations (7: research slides and dot field; 8: heartbeat on the "Say hello" and contact buttons; 9: the copy confirmation). Red is reserved for them: it marks things that pulse or flow. Every one is CSS (keyframes or transitions); JavaScript only sets a few classes and one CSS variable.
 
 Watch them in `reference/index.html` before building. The CSS in that file's `<style>` block has the exact keyframes; the values below are copied from it.
 
@@ -144,11 +144,12 @@ The text changes; the graphic stays. Red marks a low-zinc infant and the slide t
 - **Switching views:** the two views share one grid cell and cross-fade over **0.25s ease** (the hidden one also gets `visibility: hidden` after the fade). Dots never fly between positions. Switching does not replay the wave or the count.
 - **Reduced motion:** final state immediately: no wave, no count, no cross-fade.
 
-## 8. Heartbeat on "Email me" (contact)
+## 8. Heartbeat on "Say hello" (hero) and "Email me" (contact)
 
 - Two rings drawn with `box-shadow` on the button's `::before` and `::after` (no extra markup), in `--on-accent` mixed toward transparent.
 - **Lub:** ring grows 0 → 16px while fading from 55% to 0, reaching the end at 45% of a **1.2s ease-out infinite** loop.
 - **Dub:** a softer echo, 0 → 10px from 35% to 0, ending at 35% of the loop, delayed **0.25s**. Together: beat, echo, rest, about 50 bpm.
+- **Hero "Say hello":** the same two rings and timing, in `--accent` (70% and 50% at the start) so they read against the dark hero.
 - Settles (paused and hidden) on hover and focus. **Mobile:** identical. **Reduced motion:** off.
 
 ## 9. Copy confirmation (contact)

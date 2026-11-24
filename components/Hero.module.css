@@ -77,6 +77,7 @@
 }
 
 .primary {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 10px;
@@ -88,6 +89,58 @@
   text-decoration: none;
   font-weight: 600;
   font-size: 16px;
+}
+
+/* Same heartbeat as the contact button (lub, then dub, ~50 bpm), in red against the dark hero.
+   Settles on hover and focus; off under reduced motion. */
+.primary::before,
+.primary::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  animation: beat 1.2s ease-out infinite;
+}
+
+.primary::after {
+  animation-name: beat-echo;
+  animation-delay: 0.25s;
+}
+
+.primary:hover::before,
+.primary:hover::after,
+.primary:focus-visible::before,
+.primary:focus-visible::after {
+  animation-play-state: paused;
+  opacity: 0;
+}
+
+@keyframes beat {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 70%, transparent);
+  }
+  45%,
+  100% {
+    box-shadow: 0 0 0 16px color-mix(in srgb, var(--accent) 0%, transparent);
+  }
+}
+
+@keyframes beat-echo {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 50%, transparent);
+  }
+  35%,
+  100% {
+    box-shadow: 0 0 0 10px color-mix(in srgb, var(--accent) 0%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .primary::before,
+  .primary::after {
+    animation: none;
+  }
 }
 
 .secondary {
